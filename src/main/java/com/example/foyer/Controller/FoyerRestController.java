@@ -1,4 +1,4 @@
-package controller;
+package com.example.foyer.Controller;
 
 
 import com.example.foyer.entity.Foyer;
