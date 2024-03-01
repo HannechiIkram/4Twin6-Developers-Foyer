@@ -1,7 +1,11 @@
 package com.example.foyer.service.bloc;
 
 import com.example.foyer.entity.Bloc;
+import com.example.foyer.entity.Chambre;
+import com.example.foyer.entity.Foyer;
 import com.example.foyer.repository.BlocRepo;
+import com.example.foyer.repository.ChambreRepo;
+import com.example.foyer.repository.FoyerRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +20,10 @@ import java.util.Set;
 public class BlocServiceImpl implements IBlocService{
 
     BlocRepo blocRepository;
+    ChambreRepo chambreRepository;
+    FoyerRepo foyerRepo;
 
-
-  /*  @Override
+  @Override
     public Bloc addBloc(Bloc b) {
         List<Chambre> chambres = (List<Chambre>) b.getChambres();
         b = blocRepository.save(b);
@@ -29,7 +34,7 @@ public class BlocServiceImpl implements IBlocService{
         return b; //on ajoute une ligne
     }
 
-   */
+
 
     @Override
     public List<Bloc> addBlocs(List<Bloc> blocs) {
@@ -109,7 +114,7 @@ public class BlocServiceImpl implements IBlocService{
     }
 
 
-/*
+
     @Override
     public Bloc affecterChambresABloc(List<Integer> numChambre, String nomBloc) {
         Bloc b = blocRepository.getBlocByNomBloc(nomBloc);
@@ -140,12 +145,10 @@ public class BlocServiceImpl implements IBlocService{
     @Override
     public Bloc affecterBlocAFoyer(String nomBloc, String nomFoyer) {
         Bloc b = blocRepository.getBlocByNomBloc(nomBloc);
-        Foyer f = foyerRepository.findFoyerByNomFoyer(nomFoyer);
+        Foyer f = foyerRepo.findFoyerByNomFoyer(nomFoyer);
         ////////////// PARENT HOWA BLOC
         b.setFoyer(f);
         return blocRepository.save(b);
     }
 
-
- */
 }

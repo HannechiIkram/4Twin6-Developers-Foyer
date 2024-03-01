@@ -1,13 +1,12 @@
-package com.example.foyer.controller;
-import com.example.foyer.service.IEtudiantService;
+package com.example.foyer.Controller;
+import com.example.foyer.service.etudiant.IEtudiantService;
 import com.example.foyer.entity.Etudiant;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.foyer.service.IEtudiantService;
-import java.time.LocalDate;
+
 import java.util.List;
 
 @RestController

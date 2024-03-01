@@ -1,7 +1,9 @@
 package com.example.foyer.service.chambre;
 
+import com.example.foyer.entity.Bloc;
 import com.example.foyer.entity.Chambre;
 import com.example.foyer.entity.TypeChambre;
+import com.example.foyer.repository.BlocRepo;
 import com.example.foyer.repository.ChambreRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ChambreServiceImpl implements IChambreService {
     ChambreRepo chambreRepository;
-   // BlocRepo blocRepository;
+    BlocRepo blocRepository;
 
     @Override
     public Chambre addChambre(Chambre c) {
@@ -59,33 +61,33 @@ public class ChambreServiceImpl implements IChambreService {
     public List<Chambre> findChambreByType(TypeChambre typeChambre) {
         return chambreRepository.findByTypeChambre(typeChambre);
     }
-   /*  @Override
+    @Override
     public List<Chambre> findByBloc(Bloc bloc) {
         return chambreRepository.findByBloc(bloc);
     }
 
-    */
+
 
     @Override
     public Chambre getChambreByIdChambre(long idChambre){
         return chambreRepository.getChambreByIdChambre(idChambre);
     }
 
-    /*@Override
+    @Override
     public List<Chambre> getChambresParNomBloc(String nomBloc) {
         Bloc b = blocRepository.getBlocByNomBloc(nomBloc);
         return chambreRepository.findByBloc(b) ;
     }
 
-     */
-   /* @Override
+
+    @Override
     public long nbChambreParTypeEtBloc(TypeChambre type, long idBloc) {
         Bloc b = blocRepository.findById(idBloc).get();
         int c = chambreRepository.countChamberByTypeChambreAndBloc_IdBloc(type , idBloc);
         return c;
     }
 
-    */
+
 
     public void pourcentageChambreParTypeChambre() {
         String[] TypeChambre = new String[3];
@@ -103,7 +105,7 @@ public class ChambreServiceImpl implements IChambreService {
         System.out.println(msg2);
         System.out.println(msg3);
     }
-   /* @Override
+   @Override
 
     public long nbChambreParBloc(String nomBloc) {
         List<Bloc> blocs = blocRepository.findByNomBloc(nomBloc);
@@ -121,12 +123,12 @@ public class ChambreServiceImpl implements IChambreService {
         return totalChambres;
     }
 
-    */
 
-  /*  @Override
+
+   @Override
     public List<Chambre> getChambresNonReserveParNomFoyerEtTypeChambre(String nomFoyer, TypeChambre type) {
         return chambreRepository.findChambreByBlocFoyerNomFoyerAndTypeChambreAndReservations_Empty(nomFoyer,type);
-    }*/
+    }
 
     @Override
     public Chambre UpdateChambreById(Chambre c) {
@@ -135,9 +137,9 @@ public class ChambreServiceImpl implements IChambreService {
 
 
 
-   /* @Override
+    @Override
     public List<Chambre> getChambresByBloc(String nomBloc) {
         return chambreRepository.findByBloc_NomBloc(nomBloc);
-    }*/
+    }
 
 }

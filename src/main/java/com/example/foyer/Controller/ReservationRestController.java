@@ -30,7 +30,7 @@ public class ReservationRestController {
     public Reservation getReservationById(@PathVariable("id") String id) {
         return ireservationservice.getById(id);
     }
-/*
+
     @PostMapping("/add/{numChambre}/{cin}")
     public ResponseEntity<Reservation>
     ajouterReservationEtAssignerAChambreEtAEtudiant(
@@ -48,7 +48,7 @@ public class ReservationRestController {
         return ireservationservice.annulerReservation(idReservation);
     }
 
- */
+
 
     @PutMapping("/validate")
     public ResponseEntity<Reservation> validate(@RequestParam String idReservation){

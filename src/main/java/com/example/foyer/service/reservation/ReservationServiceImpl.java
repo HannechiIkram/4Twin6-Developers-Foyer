@@ -1,19 +1,26 @@
 package com.example.foyer.service.reservation;
 
+import com.example.foyer.entity.Chambre;
+import com.example.foyer.entity.Etudiant;
 import com.example.foyer.entity.Reservation;
+import com.example.foyer.repository.ChambreRepo;
+import com.example.foyer.repository.EtudiantRepository;
 import com.example.foyer.repository.ReservationRepo;
+import org.springframework.http.ResponseEntity;
 
 
 import java.time.LocalDate;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 public class ReservationServiceImpl implements IReservationService {
 
     ReservationRepo resRepo;
-    //ChambreRepo chambreRepo;
-    // EtudiantRepository etudianrepo;
+    ChambreRepo chambreRepo;
+    EtudiantRepository etudianrepo;
 
 
     @Override
@@ -21,7 +28,7 @@ public class ReservationServiceImpl implements IReservationService {
         return resRepo.save(reservation);
     }
 
-    /*
+
     @Override
     public Reservation ajouterReservationEtAssignerAChambreEtAEtudiant(
             long numChambre,
@@ -65,7 +72,7 @@ public class ReservationServiceImpl implements IReservationService {
         return resRepo.findById(reservation.getIdReservation()).orElse(null);
 
     }
-    */
+
 
 
     @Override
@@ -86,7 +93,7 @@ public class ReservationServiceImpl implements IReservationService {
         return resRepo.findById(id).orElse(null);
     }
 
-    /*
+
 
     @Override
     public ResponseEntity<String> annulerReservation(String idReservation) {
@@ -104,7 +111,7 @@ public class ReservationServiceImpl implements IReservationService {
 
     }
 
-*/
+
 
 
     @Override

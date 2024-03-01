@@ -24,12 +24,8 @@ public class Foyer implements Serializable {
     @Column(name = "capaciteFoyer")
     private long capaciteFoyer;
 
-   // @OneToMany(mappedBy = "foyer")
-    //List<Bloc> bloc=new ArrayList<>();
+   @OneToMany(mappedBy = "foyer")
+   List<Bloc> bloc=new ArrayList<>();
 
-   // @OneToOne(mappedBy = "foyer")
-   // private Universite universite;
-    @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
-    private byte[] imageData;
+
 }

@@ -1,7 +1,6 @@
 package com.example.foyer.service.etudiant;
 
 import com.example.foyer.entity.Etudiant;
-import com.example.foyer.service.IEtudiantService;
 import com.example.foyer.repository.EtudiantRepository;
 
 

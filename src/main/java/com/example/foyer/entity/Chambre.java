@@ -1,6 +1,7 @@
 package com.example.foyer.entity;
 
 import com.example.foyer.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,12 +23,12 @@ public class Chambre implements Serializable {
     private long numeroChambre;
     @Enumerated(EnumType.STRING)
     private TypeChambre typeChambre;
-   /* @ManyToOne
+   @ManyToOne
     @JsonIgnore
     private Bloc bloc;
     @JsonIgnore
     @OneToMany(mappedBy = "chambre")
-    private Set<Reservation> reservations;*/
+    private Set<Reservation> reservations;
 
 
 

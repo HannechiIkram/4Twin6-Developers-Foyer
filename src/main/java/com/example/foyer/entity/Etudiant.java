@@ -45,7 +45,7 @@ public class Etudiant implements Serializable {
     private String email;
     private String mdp;
 
-/*
+
     //association with table Reservation
     @JsonIgnore
     @OneToMany(mappedBy = "etudiant", cascade = CascadeType.ALL)
@@ -53,8 +53,7 @@ public class Etudiant implements Serializable {
 
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    User user;*/
+
 }
 
 

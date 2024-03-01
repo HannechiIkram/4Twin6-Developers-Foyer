@@ -21,12 +21,12 @@ public class BlocRestController {
     List<Bloc> findAll() {
         return iBlocService.findAll();
     }
-/*
+
     @PostMapping("/addBloc")
     Bloc addBloc(@RequestBody Bloc b) {
         return iBlocService.addBloc(b);
     }
-*/
+
     @GetMapping("findById/{id}")
     Bloc findById(@PathVariable("id") long id) {
         return iBlocService.findById(id);

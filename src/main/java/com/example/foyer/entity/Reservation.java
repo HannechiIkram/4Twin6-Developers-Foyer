@@ -23,6 +23,7 @@ public class Reservation {
     Boolean estValide;
     private String statuReservation;
 
+
     public void setStatuReservation(String statuReservation) {
         this.statuReservation = statuReservation;
     }
@@ -30,7 +31,7 @@ public class Reservation {
     public String getStatuReservation() {
         return statuReservation;
     }
-/*
+
     @ManyToOne
     Etudiant etudiant;
 
@@ -38,6 +39,7 @@ public class Reservation {
 
     @ManyToOne
     Chambre chambre;
-    String statuReservation;
-*/
+
+
+
 }

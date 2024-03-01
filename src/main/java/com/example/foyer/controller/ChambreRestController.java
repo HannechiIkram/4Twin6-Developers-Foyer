@@ -1,8 +1,10 @@
-package com.example.foyer.controller;
+package com.example.foyer.Controller;
 
+import com.example.foyer.entity.Bloc;
 import com.example.foyer.entity.Chambre;
 import com.example.foyer.entity.TypeChambre;
 
+import com.example.foyer.service.bloc.IBlocService;
 import com.example.foyer.service.chambre.IChambreService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +18,7 @@ import java.util.List;
 
 public class ChambreRestController {
     IChambreService iChambreService;
-    //IBlocService iBlocService;
+    IBlocService iBlocService;
 
     @GetMapping("/findAllC")
     List<Chambre> findAll(){
@@ -54,7 +56,7 @@ public class ChambreRestController {
     }
 
 
-   /* @GetMapping("/chambres/searchByBloc")
+   @GetMapping("/chambres/searchByBloc")
     public List<Chambre> searchChambresByBloc(@RequestParam("idBloc") long idBloc) {
         Bloc bloc = iBlocService.findById(idBloc);
         if (bloc != null) {
@@ -63,20 +65,19 @@ public class ChambreRestController {
 
             return Collections.emptyList();
         }
-    }*/
+    }
 
-   /* @GetMapping("/parNomBloc")
+    @GetMapping("/parNomBloc")
     public List<Chambre> getChambresParNomBloc(@RequestParam("nomBloc") String nomBloc) {
         return iChambreService.getChambresParNomBloc(nomBloc);
     }
 
-    */
-  /*  @GetMapping("nbChambreParTypeEtBloc/{type}/{idBloc}")
+      @GetMapping("nbChambreParTypeEtBloc/{type}/{idBloc}")
     long nbChambreParTypeEtBloc(@PathVariable("type") TypeChambre type , @PathVariable("idBloc") long idBloc){
         return iChambreService.nbChambreParTypeEtBloc(type , idBloc);
     }
 
-   */
+
 
     @GetMapping("/pourcentageChambreParTypeChambre")
     public String pourcentageChambreParTypeChambre() {
@@ -85,11 +86,11 @@ public class ChambreRestController {
     }
 
 
-    /*@GetMapping("chambreListNonReserve/{type}/{nomFoyer}")
+    @GetMapping("chambreListNonReserve/{type}/{nomFoyer}")
     List<Chambre> getChambresNonReserveParNomFoyerEtTypeChambre(@PathVariable("type") TypeChambre type , String nomFoyer)
     {
         return iChambreService.getChambresNonReserveParNomFoyerEtTypeChambre(nomFoyer , type);
-    }*/
+    }
 
     @GetMapping("/getChambreById/{idChambre}")
     public Chambre getChambreByIdChambre(@PathVariable("idChambre") long idChambre) {
@@ -101,8 +102,8 @@ public class ChambreRestController {
     }
 
 
-  /*  @GetMapping("/par-bloc/{nomBloc}")
+   @GetMapping("/par-bloc/{nomBloc}")
     public List<Chambre> getChambresByBloc(@PathVariable String nomBloc) {
         return iChambreService.getChambresByBloc(nomBloc);
-    }*/
+    }
 }

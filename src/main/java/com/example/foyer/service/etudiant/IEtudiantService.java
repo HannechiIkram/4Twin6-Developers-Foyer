@@ -1,4 +1,4 @@
-package com.example.foyer.service;
+package com.example.foyer.service.etudiant;
 
 
 import com.example.foyer.entity.Etudiant;

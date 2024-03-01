@@ -24,7 +24,7 @@ public class Bloc implements Serializable {
     private String nomBloc ;
     @Column(name="capaciteBloc")
     private int capaciteBloc ;
- /*
+
     @ManyToOne
     @JoinColumn(name = "foyer_id")
     @JsonBackReference
@@ -32,5 +32,5 @@ public class Bloc implements Serializable {
     @JsonIgnoreProperties("bloc")
     @OneToMany(mappedBy="bloc",cascade = CascadeType.ALL)
     List<Chambre> chambres =new ArrayList<>();
-    */
+
 }

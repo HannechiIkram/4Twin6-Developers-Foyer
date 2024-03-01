@@ -1,5 +1,6 @@
 package com.example.foyer.service.chambre;
 
+import com.example.foyer.entity.Bloc;
 import com.example.foyer.entity.Chambre;
 import com.example.foyer.entity.TypeChambre;
 
@@ -24,20 +25,20 @@ public interface IChambreService {
 
     Chambre findChambreByNumero(long numeroChambre);
     List<Chambre> findChambreByType(TypeChambre typeChambre);
-   // List<Chambre> findByBloc(Bloc bloc);
-   // public List<Chambre> getChambresParNomBloc(String nomBloc);
+    List<Chambre> findByBloc(Bloc bloc);
+    public List<Chambre> getChambresParNomBloc(String nomBloc);
 
-   // long nbChambreParTypeEtBloc(TypeChambre type, long idBloc);
+   long nbChambreParTypeEtBloc(TypeChambre type, long idBloc);
 
     void pourcentageChambreParTypeChambre();
 
-   // long nbChambreParBloc(String nomBloc);
-    //public List<Chambre> getChambresNonReserveParNomFoyerEtTypeChambre(String nomFoyer, TypeChambre type);
+    long nbChambreParBloc(String nomBloc);
+    public List<Chambre> getChambresNonReserveParNomFoyerEtTypeChambre(String nomFoyer, TypeChambre type);
 
     Chambre getChambreByIdChambre(long idChambre);
 
     public Chambre UpdateChambreById(Chambre c);
 
 
-   // public List<Chambre> getChambresByBloc(String nomBloc);
+    public List<Chambre> getChambresByBloc(String nomBloc);
 }
