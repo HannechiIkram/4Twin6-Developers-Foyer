@@ -2,6 +2,7 @@ package controller;
 
 
 import com.example.foyer.entity.Foyer;
+import com.example.foyer.service.foyer.IFoyerService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,9 +17,9 @@ import java.util.List;
 @RequestMapping("/api/foyers")
 public class FoyerRestController {
 
-   // IFoyerService iFoyerService;
+    IFoyerService iFoyerService;
    // BlocRepo blocRepository;
-/*
+
     @GetMapping("findAllF")
     List<Foyer> findAll(){
         return iFoyerService.findAll();
@@ -38,11 +39,11 @@ public class FoyerRestController {
         f.setIdFoyer(id); // Set the ID from the path variable
         return iFoyerService.editFoyer(f);
     }
-    @PutMapping("/UpdateFoyerWithAssociations/{id}/{idUniversite}/{idBloc}")
-    Foyer updateFoyerWithAssociations(@RequestBody Foyer updatedFoyer, @PathVariable Long id,
-                                      @PathVariable Long idUniversite, @PathVariable List<Long> idBloc) {
-        return iFoyerService.updateFoyerWithAssociations(updatedFoyer, id, idUniversite, idBloc);
-    }
+   // @PutMapping("/UpdateFoyerWithAssociations/{id}/{idUniversite}/{idBloc}")
+  //  Foyer updateFoyerWithAssociations(@RequestBody Foyer updatedFoyer, @PathVariable Long id,
+        //                              @PathVariable Long idUniversite, @PathVariable List<Long> idBloc) {
+       // return iFoyerService.updateFoyerWithAssociations(updatedFoyer, id, idUniversite, idBloc);
+    //}
     @DeleteMapping("DeleteFoyer")
     void DeleteFoyer(@RequestBody Foyer f){
         iFoyerService.delete(f);
@@ -52,14 +53,14 @@ public class FoyerRestController {
     public void DeleteFoyerById(@PathVariable long id) {
         iFoyerService.deleteById(id);
     }
-    @PostMapping("/ajouterFoyerEtAffecteUniversiteEtBloc/{idUniversite}/{idBloc}")
-    public Foyer ajouterFoyerEtAffecteUniversiteAndBloc(@RequestBody Foyer foyer, @PathVariable long idUniversite, @PathVariable List<Long> idBloc) {
-        return iFoyerService.addFoyerAndAssociateUniversiteAndBloc(foyer, idUniversite, idBloc);
-    }
+   // @PostMapping("/ajouterFoyerEtAffecteUniversiteEtBloc/{idUniversite}/{idBloc}")
+   // public Foyer ajouterFoyerEtAffecteUniversiteAndBloc(@RequestBody Foyer foyer, @PathVariable long idUniversite, @PathVariable List<Long> idBloc) {
+    //    return iFoyerService.addFoyerAndAssociateUniversiteAndBloc(foyer, idUniversite, idBloc);
+  //  }
 
-    @RequestMapping(value = "/DeleteFoyerAndDesaffecterUniversite/{id}", method = RequestMethod.DELETE)
-    public void deleteFoyerAndDesaffecterUniversite(@PathVariable long id) {
-        iFoyerService.deleteFoyerAndDesaffecterUniversite(id);
-    }*/
+   // @RequestMapping(value = "/DeleteFoyerAndDesaffecterUniversite/{id}", method = RequestMethod.DELETE)
+    //public void deleteFoyerAndDesaffecterUniversite(@PathVariable long id) {
+    //    iFoyerService.deleteFoyerAndDesaffecterUniversite(id);
+//    }
 
 }
