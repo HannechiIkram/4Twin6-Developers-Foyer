@@ -84,5 +84,10 @@
     </plugins>
 </build>
 
+<properties>
+    <!-- Other properties -->
+    <sonar.login>admin</sonar.login>
+    <sonar.password>Ih123456*</sonar.password>
+</properties>
 
 </project>
