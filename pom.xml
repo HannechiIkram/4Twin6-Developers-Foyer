@@ -76,5 +76,10 @@
         </plugin>
     </plugins>
 	</build>
+	<properties>
+    <!-- Other properties -->
+    <sonar.login>admin</sonar.login>
+    <sonar.password>admin</sonar.password>
+</properties>
 
 </project>
