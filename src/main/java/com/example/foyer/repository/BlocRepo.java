@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface BlocRepo extends JpaRepository<Bloc,Long> {
-/
+
     List<Bloc> findByNomBloc(String nomBloc); // 1- Recherche par nomBloc
     List<Bloc> findByCapaciteBloc(int capaciteBloc); // 2- Recherche par capaciteBloc
 
