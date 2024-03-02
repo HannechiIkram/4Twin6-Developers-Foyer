@@ -3,6 +3,7 @@ package com.example.foyer.service.foyer;
 import com.example.foyer.entity.Foyer;
 import com.example.foyer.repository.FoyerRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class foyerServiceImpl implements IFoyerService {
-
+@Autowired
     FoyerRepo foyerRepository;
    // BlocRepo blocRepository;
   //  UniversiteRepo universiteRepository;
@@ -101,104 +102,7 @@ public class foyerServiceImpl implements IFoyerService {
         return foyerRepository.findByNomFoyer(nomFoyer);
     }
 
-   /* @Override
-    public List<Foyer> getFoyersByBloc(Bloc bloc) {
-        return foyerRepository.findByBloc(bloc);
-    }*/
 
-   /* @Override
-    public Foyer ajoutFoyerEtBloc(Foyer foyer) {
-        Foyer f = foyerRepository.save(foyer);
-        for (Bloc b : foyer.getBloc()) {
-            b.setFoyer(f);
-            blocRepository.save(b);
-        }
-        return f;
-    }
-*/
-  /*  @Override
-    public Foyer ajouterFoyerEtAffecteUniversite(Foyer foyer, long idUniversite) {
-        Universite uni = universiteRepository.findById(idUniversite).get();
-        Foyer fo = foyerRepository.save(foyer);
-        uni.setFoyer(fo);
-        universiteRepository.save(uni);
-        return foyer;
-    }
 
-    @Override
-    public Universite affecterFoyerAUniversite(long idFoyer, String nomUniversite) {
-        Foyer foyer = foyerRepository.findById(idFoyer).orElse(null);
-        List<Universite> universites = universiteRepository.findByNomUniversite(nomUniversite);
-        Universite universite = universites.get(0);
-        universite.setFoyer(foyer);
-        universiteRepository.save(universite);
 
-        return universite;
-    }
-
-    @Override
-    public Universite desaffecterFoyerAUniversite(long idUniversite) {
-        Universite universite = universiteRepository.findById(idUniversite).orElse(null);
-        universite.setFoyer(null); // Désaffectez le foyer en définissant null
-        return universiteRepository.save(universite);
-    }
-
-    @Override
-    public Bloc affecterBlocAFoyer(String nomBloc, String nomFoyer) {
-        List<Bloc> blocs = blocRepository.findByNomBloc(nomBloc);
-        List<Foyer> foyers = foyerRepository.findByNomFoyer(nomFoyer);
-        Foyer foyer = foyers.get(0);
-        for (Bloc bloc : blocs) {
-            bloc.setFoyer(foyer);
-            blocRepository.save(bloc);
-        }
-        Bloc bloc = blocs.get(0);
-        bloc.setFoyer(foyer);
-        blocRepository.save(bloc);
-        return bloc;
-    }
-
-    @Override
-    public void deleteFoyerAndDesaffecterUniversite(Long id) {
-        Foyer foyer = foyerRepository.findById(id).orElse(null);
-        if (foyer != null) {
-            List<Bloc> blocs = foyer.getBloc();
-            // Remove the association ll bloc
-            blocs.forEach(bloc -> {
-                bloc.setFoyer(null);
-                blocRepository.save(bloc);
-            });
-
-            Universite universite = foyer.getUniversite();
-            if (universite != null) {
-                universite.setFoyer(null);
-                try {
-                    universiteRepository.save(universite);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            foyerRepository.deleteById(id);
-        }
-    }
-
-    public Foyer addFoyerAndAssociateUniversiteAndBloc(Foyer foyer, long idUniversite, List<Long> idBloc) {
-        Universite universite = universiteRepository.findById(idUniversite).orElse(null);
-        if (universite != null) {
-            foyer.setUniversite(universite);
-            foyer = foyerRepository.save(foyer);
-            // Associate multiple Bloc
-            for (Long blocId : idBloc) {
-                Bloc bloc = blocRepository.findById(blocId).orElse(null);
-                if (bloc != null) {
-                    bloc.setFoyer(foyer);
-                    foyer.getBloc().add(bloc);
-                }
-            }
-            universite.setFoyer(foyer);
-            universiteRepository.save(universite);
-            foyer = foyerRepository.save(foyer);
-        }
-        return foyer;
-    }*/
 }
