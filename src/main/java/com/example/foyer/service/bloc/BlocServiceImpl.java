@@ -9,6 +9,7 @@ import com.example.foyer.repository.FoyerRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import com.example.foyer.service.bloc.IBlocService;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
