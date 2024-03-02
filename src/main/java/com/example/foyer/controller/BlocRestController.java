@@ -1,10 +1,11 @@
-package com.example.foyer.controller;
+package com.example.foyer.Controller;
 
 
 
 import com.example.foyer.entity.Bloc;
 import com.example.foyer.service.bloc.IBlocService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 
 public class BlocRestController {
 
+    @Autowired
     IBlocService iBlocService;
 
     @GetMapping("findAll")
@@ -92,17 +94,5 @@ public class BlocRestController {
         return iBlocService.findByNomBlocOrCapaciteBloc(nomBloc, capaciteBloc);
     }
 
-    @PutMapping("affecterChambreABloc/{nomBloc}")
-    Bloc affecterChambresABloc(@RequestBody List<Integer> numeros , @PathVariable("nomBloc") String nomBloc){
-        return iBlocService.affecterChambresABloc(numeros , nomBloc);
-    }
-    @PutMapping("desaffecterChambreABloc/{idBloc}")
-    Bloc desaffecterChambreABloc(@PathVariable("idBloc") long idBloc) {
-        return iBlocService.desaffecterChambreABloc(idBloc);
-    }
-    @PutMapping("affecterBlocFoyer/{nomBloc}/{nomFoyer}")
-    Bloc affecterBlocAFoyer(@PathVariable("nomBloc") String nomBloc ,
-                            @PathVariable("nomFoyer") String nomFoyer){
-        return iBlocService.affecterBlocAFoyer(nomBloc, nomFoyer);
-    }
+
 }
