@@ -5,6 +5,7 @@ import com.example.foyer.entity.Foyer;
 import com.example.foyer.repository.BlocRepo;
 import com.example.foyer.repository.FoyerRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class foyerServiceImpl implements IFoyerService {
-
+@Autowired
     FoyerRepo foyerRepository;
     BlocRepo blocRepository;
   //  UniversiteRepo universiteRepository;
@@ -68,24 +69,6 @@ public class foyerServiceImpl implements IFoyerService {
 
     }
 
-    @Override
-    public Bloc affecterBlocAFoyer(String nomBloc, String nomFoyer) {
-        List<Bloc> blocs = blocRepository.findByNomBloc(nomBloc);
-        List<Foyer> foyers = foyerRepository.findByNomFoyer(nomFoyer);
-        Foyer foyer = foyers.get(0);
-        for (Bloc bloc : blocs) {
-            bloc.setFoyer(foyer);
-            blocRepository.save(bloc);
-        }
-        Bloc bloc = blocs.get(0);
-        bloc.setFoyer(foyer);
-        blocRepository.save(bloc);
-        return bloc;
-    }
 
-    @Override
-    public List<Foyer> findByNomFoyer(String nomFoyer) {
-        return foyerRepository.findByNomFoyer(nomFoyer);
-    }
 
 }

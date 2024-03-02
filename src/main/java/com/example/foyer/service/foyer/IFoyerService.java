@@ -28,8 +28,6 @@ public interface IFoyerService {
 
 
 
-    Bloc affecterBlocAFoyer(String nomBloc, String nomFoyer);
-    List<Foyer>findByNomFoyer(String nomFoyer);
 
 
 
