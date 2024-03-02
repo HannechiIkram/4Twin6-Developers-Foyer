@@ -1,4 +1,4 @@
-package com.example.foyer.Controller;
+package com.example.foyer.controller;
 
 
 
