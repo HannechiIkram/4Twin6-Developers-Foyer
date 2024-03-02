@@ -6,18 +6,14 @@ import com.example.foyer.entity.Foyer;
 import com.example.foyer.repository.BlocRepo;
 import com.example.foyer.repository.ChambreRepo;
 import com.example.foyer.repository.FoyerRepo;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.foyer.service.bloc.IBlocService;
-import java.util.ArrayList;
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
+
 
 @Service
-
 public class BlocServiceImpl implements IBlocService{
     @Autowired
 
@@ -117,40 +113,6 @@ public class BlocServiceImpl implements IBlocService{
 
 
 
-    @Override
-    public Bloc affecterChambresABloc(List<Integer> numChambre, String nomBloc) {
-        Bloc b = blocRepository.getBlocByNomBloc(nomBloc);
-        numChambre.forEach(numero ->{
-            Chambre c = chambreRepository.findByNumeroChambre(numero);
-            c.setBloc(b);
-            chambreRepository.save(c);
 
-        });
-        return b ;
-    }
-
-    @Override
-    public Bloc desaffecterChambreABloc(long idBloc) {
-        Bloc bloc = blocRepository.findById(idBloc).orElse(null);
-
-        if (bloc != null) {
-            List<Chambre> chambres = bloc.getChambres();
-            for (Chambre chambre : chambres) {
-                chambre.setBloc(null);
-            }
-            bloc.setChambres(chambres);
-            blocRepository.save(bloc);
-        }
-        return bloc;
-    }
-
-    @Override
-    public Bloc affecterBlocAFoyer(String nomBloc, String nomFoyer) {
-        Bloc b = blocRepository.getBlocByNomBloc(nomBloc);
-        Foyer f = foyerRepo.findFoyerByNomFoyer(nomFoyer);
-        ////////////// PARENT HOWA BLOC
-        b.setFoyer(f);
-        return blocRepository.save(b);
-    }
 
 }

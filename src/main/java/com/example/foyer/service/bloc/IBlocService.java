@@ -28,8 +28,5 @@ public interface IBlocService {
     List<Bloc> findByNomBlocContaining(String subString);
     List<Bloc> findAllByOrderByNomBlocAsc();
     List<Bloc> findByNomBlocOrCapaciteBloc(String nomBloc, int capaciteBloc);
-    Bloc affecterChambresABloc(List<Integer> numChambre, String nomBloc);
-    Bloc desaffecterChambreABloc(long idBloc);
-    Bloc affecterBlocAFoyer(String nomBloc, String nomFoyer);
 
 }

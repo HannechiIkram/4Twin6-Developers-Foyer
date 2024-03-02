@@ -92,17 +92,5 @@ public class BlocRestController {
         return iBlocService.findByNomBlocOrCapaciteBloc(nomBloc, capaciteBloc);
     }
 
-    @PutMapping("affecterChambreABloc/{nomBloc}")
-    Bloc affecterChambresABloc(@RequestBody List<Integer> numeros , @PathVariable("nomBloc") String nomBloc){
-        return iBlocService.affecterChambresABloc(numeros , nomBloc);
-    }
-    @PutMapping("desaffecterChambreABloc/{idBloc}")
-    Bloc desaffecterChambreABloc(@PathVariable("idBloc") long idBloc) {
-        return iBlocService.desaffecterChambreABloc(idBloc);
-    }
-    @PutMapping("affecterBlocFoyer/{nomBloc}/{nomFoyer}")
-    Bloc affecterBlocAFoyer(@PathVariable("nomBloc") String nomBloc ,
-                            @PathVariable("nomFoyer") String nomFoyer){
-        return iBlocService.affecterBlocAFoyer(nomBloc, nomFoyer);
-    }
+
 }
