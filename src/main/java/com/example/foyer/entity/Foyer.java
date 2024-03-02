@@ -1,5 +1,6 @@
 package com.example.foyer.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,7 +24,7 @@ public class Foyer implements Serializable {
 
     @Column(name = "capaciteFoyer")
     private long capaciteFoyer;
-
+    @JsonIgnore
    @OneToMany(mappedBy = "foyer")
    List<Bloc> bloc=new ArrayList<>();
 

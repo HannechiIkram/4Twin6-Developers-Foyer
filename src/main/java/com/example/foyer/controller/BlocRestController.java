@@ -1,10 +1,10 @@
-package com.example.foyer.controller;
 
 
-
+package com.example.foyer.Controller;
 import com.example.foyer.entity.Bloc;
 import com.example.foyer.service.bloc.IBlocService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/api/blocs")
 
 public class BlocRestController {
-
+    @Autowired
     IBlocService iBlocService;
 
     @GetMapping("findAll")

@@ -7,6 +7,7 @@ import com.example.foyer.repository.BlocRepo;
 import com.example.foyer.repository.ChambreRepo;
 import com.example.foyer.repository.FoyerRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.foyer.service.bloc.IBlocService;
@@ -16,9 +17,9 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-@AllArgsConstructor
 
 public class BlocServiceImpl implements IBlocService{
+    @Autowired
 
     BlocRepo blocRepository;
     ChambreRepo chambreRepository;

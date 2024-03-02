@@ -1,6 +1,7 @@
 package com.example.foyer.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -30,6 +31,7 @@ public class Bloc implements Serializable {
     @JsonBackReference
     private Foyer foyer;
     @JsonIgnoreProperties("bloc")
+    @JsonIgnore
     @OneToMany(mappedBy="bloc",cascade = CascadeType.ALL)
     List<Chambre> chambres =new ArrayList<>();
 
