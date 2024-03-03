@@ -1,0 +1,20 @@
+
+version: "3.7"
+services:
+  kaddem-api:
+    build: .
+    restart: always
+    ports:
+      - 8181:8181
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: "mysql:8.0"
+    restart: always
+    ports:
+      - 3306:3306
+
+    environment:
+      MYSQL_DATABASE: Foyer
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
