@@ -1,5 +1,5 @@
 
 FROM openjdk:17-alpine
-EXPOSE 9090
+EXPOSE 8181
 ADD ./target/*.jar FoyerApplication.jar
 ENTRYPOINT [ "java", "-jar", "./FoyerApplication.jar" ]
