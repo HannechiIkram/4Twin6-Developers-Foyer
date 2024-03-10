@@ -1,4 +1,4 @@
-package com.example.foyer;
+package com.example.foyer.service.foyer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

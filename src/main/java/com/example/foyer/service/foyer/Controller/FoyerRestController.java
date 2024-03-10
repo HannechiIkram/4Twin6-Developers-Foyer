@@ -1,8 +1,8 @@
-package com.example.foyer.Controller;
+package com.example.foyer.service.foyer.Controller;
 
 
-import com.example.foyer.entity.Foyer;
-import com.example.foyer.service.foyer.IFoyerService;
+import com.example.foyer.service.foyer.entity.Foyer;
+import com.example.foyer.service.foyer.service.foyer.IFoyerService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

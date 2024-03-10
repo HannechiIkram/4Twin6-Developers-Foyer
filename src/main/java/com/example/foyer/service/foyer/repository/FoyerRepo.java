@@ -1,6 +1,6 @@
-package com.example.foyer.repository;
+package com.example.foyer.service.foyer.repository;
 
-import com.example.foyer.entity.Foyer;
+import com.example.foyer.service.foyer.entity.Foyer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

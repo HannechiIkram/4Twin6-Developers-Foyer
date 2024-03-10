@@ -1,4 +1,4 @@
-package com.example.foyer.entity;
+package com.example.foyer.service.foyer.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,11 +24,11 @@ public class Foyer implements Serializable {
     @Column(name = "capaciteFoyer")
     private long capaciteFoyer;
 
-   // @OneToMany(mappedBy = "foyer")
-    //List<Bloc> bloc=new ArrayList<>();
-
-   // @OneToOne(mappedBy = "foyer")
-   // private Universite universite;
+  //  @OneToMany(mappedBy = "foyer")
+   // List<Bloc> bloc=new ArrayList<>();
+/*
+   @OneToOne(mappedBy = "foyer")
+    private Universite universite;*/
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
     private byte[] imageData;

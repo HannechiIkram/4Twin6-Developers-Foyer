@@ -1,18 +1,19 @@
-package com.example.foyer.service.foyer;
+package com.example.foyer.service.foyer.service.foyer;
 
-import com.example.foyer.entity.Foyer;
-import com.example.foyer.repository.FoyerRepo;
+import com.example.foyer.service.foyer.entity.Foyer;
+import com.example.foyer.service.foyer.repository.FoyerRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class foyerServiceImpl implements IFoyerService {
 @Autowired
-    FoyerRepo foyerRepository;
+FoyerRepo foyerRepository;
    // BlocRepo blocRepository;
   //  UniversiteRepo universiteRepository;
 
@@ -82,10 +83,15 @@ public class foyerServiceImpl implements IFoyerService {
         return foyerRepository.findAll();
     }
 
-    @Override
-    public Foyer findById(long id) {
-        return foyerRepository.findById(id).get();
-    }
+   // @Override
+  //  public Foyer findById(long id) {
+     //   return foyerRepository.findById(id).get();
+    //}
+   @Override
+   public Foyer findById(long id) {
+       Optional<Foyer> optionalFoyer = foyerRepository.findById(id);
+       return optionalFoyer.orElse(null); // or throw an exception if needed
+   }
 
     @Override
     public void deleteById(long id) {

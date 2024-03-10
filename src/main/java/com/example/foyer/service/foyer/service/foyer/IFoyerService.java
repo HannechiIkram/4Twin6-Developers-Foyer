@@ -1,8 +1,8 @@
-package com.example.foyer.service.foyer;
+package com.example.foyer.service.foyer.service.foyer;
 
 
 
-import com.example.foyer.entity.Foyer;
+import com.example.foyer.service.foyer.entity.Foyer;
 
 import java.util.List;
 
