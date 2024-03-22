@@ -18,9 +18,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(SpringRunner.class)
 @ActiveProfiles("test")
+
 @SpringBootTest
+@RunWith(SpringRunner.class)
 
 @ExtendWith(SpringExtension.class)
 
