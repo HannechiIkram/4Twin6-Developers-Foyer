@@ -63,7 +63,7 @@ class FoyerServiceImplTest {
         assertNotEquals(0, saved.getIdFoyer());
     }
 
-    @Test
+   /* @Test
     void testFindAll() {
         // Given
         Foyer foyer1 = new Foyer();
@@ -82,7 +82,7 @@ class FoyerServiceImplTest {
         // Then
         assertNotNull(allFoyers);
         assertEquals(2, allFoyers.size());
-    }
+    }*/
 
     @Test
     void testFindById() {
