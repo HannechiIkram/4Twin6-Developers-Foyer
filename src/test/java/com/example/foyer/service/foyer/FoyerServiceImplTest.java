@@ -4,13 +4,13 @@ package com.example.foyer.service.foyer;
 import com.example.foyer.service.foyer.entity.Foyer;
 import com.example.foyer.service.foyer.repository.FoyerRepo;
 import com.example.foyer.service.foyer.service.foyer.FoyerService;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
@@ -21,18 +21,21 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
 @SpringBootTest
-class FoyerServiceImplTest {
 
-    @Autowired
+@ExtendWith(SpringExtension.class)
+
+
+
+
+class FoyerServiceImplTest {
+@Autowired
     FoyerService foyerService;
 
     @Autowired
+
     FoyerRepo foyerRepo; // Autowire FoyerRepo
 
-    @AfterEach
-    void tearDown() {
-        foyerRepo.deleteAll();
-    }
+
 
     @Test
     void testAddFoyer() {
