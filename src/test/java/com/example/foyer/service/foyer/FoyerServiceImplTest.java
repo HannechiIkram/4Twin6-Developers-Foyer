@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 @ActiveProfiles("test")
 @ExtendWith(SpringExtension.class)
-@RunWith(SpringRunner.class)
 @SpringBootTest
  class FoyerServiceImplTest {
     @Autowired

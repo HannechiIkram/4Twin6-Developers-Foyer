@@ -5,12 +5,14 @@ import com.example.foyer.service.foyer.entity.Foyer;
 import com.example.foyer.service.foyer.repository.FoyerRepo;
 import com.example.foyer.service.foyer.service.foyer.FoyerService;
 import org.junit.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,6 +25,7 @@ import static org.mockito.Mockito.*;
 @ActiveProfiles("test")
 @SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
+@ExtendWith(SpringExtension.class)
 
 public class FoyerServiceImplIT {
     @Mock
