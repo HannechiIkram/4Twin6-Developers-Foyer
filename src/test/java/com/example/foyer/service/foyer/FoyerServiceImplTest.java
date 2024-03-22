@@ -1,14 +1,17 @@
 package com.example.foyer.service.foyer;
 
+
+
 import com.example.foyer.service.foyer.entity.Foyer;
+
+
+
 import com.example.foyer.service.foyer.repository.FoyerRepo;
-import com.example.foyer.service.foyer.service.foyer.foyerServiceImpl;
+import com.example.foyer.service.foyer.service.foyer.FoyerService;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -17,12 +20,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
-import static junit.framework.TestCase.*;
-import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ActiveProfiles("test")
 @ExtendWith(SpringExtension.class)
@@ -30,14 +29,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class FoyerServiceImplTest {
     @Autowired
-    foyerServiceImpl foyerService;
-FoyerRepo foyerRepo;
+    FoyerService foyerService;
+    FoyerRepo foyerRepo;
     @Test
     public void testaddFoyer() {
-        Foyer f = Foyer.builder().nomFoyer("ik").capaciteFoyer(500).build();
+        Foyer f = Foyer.builder().idFoyer(1).nomFoyer("ik").capaciteFoyer(500).build();
         Foyer savedFoyer = foyerService.addFoyer(f);
-        Assertions.assertNotNull(savedFoyer.getIdFoyer());
-         foyerService.deleteById(f.getIdFoyer());
+        Assertions.assertNotEquals(0, savedFoyer.getIdFoyer(), "The ID of the saved foyer should not be zero");
+        foyerService.deleteById(f.getIdFoyer());
 
 
     }
@@ -52,7 +51,7 @@ FoyerRepo foyerRepo;
         Foyer saved = foyerService.editFoyer(foyer);
 
         // When
-        Assertions.assertNotNull(saved.getIdFoyer());
+        Assertions.assertNotEquals(0, saved.getIdFoyer(), "The ID of the saved foyer should not be zero");
 
 
 
@@ -141,6 +140,3 @@ FoyerRepo foyerRepo;
 
 
 }
-
-
-

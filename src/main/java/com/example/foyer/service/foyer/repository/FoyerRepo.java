@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface FoyerRepo  extends JpaRepository<Foyer, Long> {
 
-    //List<Foyer> findByBloc(Bloc bloc);
+
     List<Foyer>findByNomFoyer(String nomFoyer);
 
     Foyer findFoyerByNomFoyer(String nomFoyer);

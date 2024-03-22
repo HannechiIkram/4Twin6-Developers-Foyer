@@ -3,7 +3,7 @@ package com.example.foyer.service.foyer;
 
 import com.example.foyer.service.foyer.entity.Foyer;
 import com.example.foyer.service.foyer.repository.FoyerRepo;
-import com.example.foyer.service.foyer.service.foyer.foyerServiceImpl;
+import com.example.foyer.service.foyer.service.foyer.FoyerService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
 
-public class FoyerServiceImplTestMock {
+public class FoyerServiceImplIT {
 
 
 
@@ -35,7 +35,7 @@ public class FoyerServiceImplTestMock {
     private FoyerRepo foyerRepository; // Assuming you have a repository dependency
 
     @InjectMocks
-    private foyerServiceImpl foyerService; // The class under test
+    private FoyerService foyerService; // The class under test
     @Test
     public void testAddFoyerWithMocking() {
         // Given
