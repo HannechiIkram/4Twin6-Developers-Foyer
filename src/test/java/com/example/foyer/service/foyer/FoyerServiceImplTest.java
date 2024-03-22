@@ -1,43 +1,38 @@
 package com.example.foyer.service.foyer;
 
 
-
 import com.example.foyer.service.foyer.entity.Foyer;
-
-
-
 import com.example.foyer.service.foyer.repository.FoyerRepo;
 import com.example.foyer.service.foyer.service.foyer.FoyerService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
-
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+
+@RunWith(SpringRunner.class)
 @ActiveProfiles("test")
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
- class FoyerServiceImplTest {
+class FoyerServiceImplTest {
+
     @Autowired
     FoyerService foyerService;
 
     @Autowired
     FoyerRepo foyerRepo; // Autowire FoyerRepo
+
     @AfterEach
     void tearDown() {
         foyerRepo.deleteAll();
     }
-
 
     @Test
     void testAddFoyer() {
@@ -52,7 +47,6 @@ import static org.mockito.Mockito.*;
         assertNotEquals(0, savedFoyer.getIdFoyer());
     }
 
-
     @Test
     void testEditFoyer() {
         // Given
@@ -65,6 +59,7 @@ import static org.mockito.Mockito.*;
         assertNotNull(saved);
         assertNotEquals(0, saved.getIdFoyer());
     }
+
     @Test
     void testFindAll() {
         // Given
@@ -79,12 +74,13 @@ import static org.mockito.Mockito.*;
         foyerRepo.save(foyer2);
 
         // When
-        List<Foyer> allFoyers = foyerRepo.findAll();
+        List<Foyer> allFoyers = foyerService.findAll();
 
         // Then
         assertNotNull(allFoyers);
         assertEquals(2, allFoyers.size());
     }
+
     @Test
     void testFindById() {
         // Given
@@ -97,9 +93,6 @@ import static org.mockito.Mockito.*;
         // Then
         assertNotNull(foundFoyer);
         assertEquals("ik", foundFoyer.getNomFoyer());
-
-        // Clean up (delete the foyer after the test)
-        foyerService.deleteById(saved.getIdFoyer());
     }
 
     @Test
@@ -127,9 +120,6 @@ import static org.mockito.Mockito.*;
         // Then
         assertNotNull(foundFoyers);
         assertFalse(foundFoyers.isEmpty());
-
-        // Clean up (delete the foyer after the test)
-        foyerService.deleteById(saved.getIdFoyer());
     }
 
     @Test
@@ -147,11 +137,5 @@ import static org.mockito.Mockito.*;
         // Then
         assertNotNull(savedFoyers);
         assertFalse(savedFoyers.isEmpty());
-
-        // Clean up (delete the foyers after the test)
-        savedFoyers.forEach(f -> foyerService.deleteById(f.getIdFoyer()));
     }
-
-
-
 }
