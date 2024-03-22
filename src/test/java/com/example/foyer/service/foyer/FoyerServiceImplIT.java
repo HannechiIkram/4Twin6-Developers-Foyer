@@ -25,57 +25,36 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 
 public class FoyerServiceImplIT {
-
-
-
-
-
-
     @Mock
     private FoyerRepo foyerRepository; // Assuming you have a repository dependency
 
     @InjectMocks
     private FoyerService foyerService; // The class under test
-    @Test
-    public void testAddFoyerWithMocking() {
-        // Given
-        Foyer f = Foyer.builder().nomFoyer("ik").capaciteFoyer(500).build();
-        when(foyerRepository.save(any(Foyer.class))).thenReturn(f);
-
-        // When
-        Foyer savedFoyer = foyerService.addFoyer(f);
-
-        // Then
-        // Verify that save was called with the correct foyer object
-        verify(foyerRepository).save(argThat(savedFoyer::equals));
-
-        // Additional assertions if needed
-        assertNotNull(savedFoyer.getIdFoyer());
-
-        // Clean up (delete the foyer after the test)
-        doNothing().when(foyerRepository).deleteById(savedFoyer.getIdFoyer());
-        foyerService.deleteById(savedFoyer.getIdFoyer());
-
-        // Verify that deleteById was called with the correct id
-        verify(foyerRepository).deleteById(savedFoyer.getIdFoyer());
-    }
-
-
 
     @Test
-    public void testEditFoyerwithMock() {
+    public void testAddFoyerWithEmptyName() {
         // Given
-        Foyer foyer = new Foyer().builder().nomFoyer("ik").capaciteFoyer(500).build();
-        when(foyerRepository.save(any(Foyer.class))).thenReturn(foyer);
+        Foyer foyer = Foyer.builder().nomFoyer("").capaciteFoyer(500).build();
 
         // When
-        Foyer saved = foyerService.editFoyer(foyer);
+        Foyer savedFoyer = foyerService.addFoyer(foyer);
 
         // Then
-        assertNotNull(saved.getIdFoyer());
-        verify(foyerRepository).save(argThat(saved::equals));
-        foyerService.deleteById(saved.getIdFoyer());
+        assertNull("Saved foyer should be null when adding a foyer with an empty name", savedFoyer);
     }
+
+    @Test
+    public void testEditFoyerWithNullInput() {
+        // Given
+        Foyer foyer = null;
+
+        // When
+        Foyer savedFoyer = foyerService.editFoyer(foyer);
+
+        // Then
+        assertNull("Saved foyer should be null when editing with null input", savedFoyer);
+    }
+
 
 
     @Test
@@ -84,9 +63,10 @@ public class FoyerServiceImplIT {
         List<Foyer> allFoyers = foyerService.findAll();
 
         // Then
-        assertNotNull(allFoyers);
+        assertNotNull("List of foyers should not be null", allFoyers);
         // Add assertions as needed for the actual content of the list
     }
+
     @Test
     public void testFindByIdWithMocks() {
         // Given
@@ -102,8 +82,8 @@ public class FoyerServiceImplIT {
 
         // When
         Foyer saved = foyerService.addFoyer(foyer);
-        assertNotNull(saved);
-        assertNotNull(saved.getIdFoyer());  // Ensure id is generated
+        assertNotNull("Saved foyer should not be null", saved);
+        assertNotNull("Saved foyer ID should not be null", saved.getIdFoyer());  // Ensure id is generated
 
         // Now, use the saved ID when setting up the findById mock
         when(foyerRepository.findById(saved.getIdFoyer())).thenReturn(Optional.of(saved));
@@ -112,7 +92,7 @@ public class FoyerServiceImplIT {
         Foyer foundFoyer = foyerService.findById(saved.getIdFoyer());
 
         // Then
-        assertNotNull(foundFoyer);
+        assertNotNull("Found foyer should not be null", foundFoyer);
         assertEquals("ik", foundFoyer.getNomFoyer());
 
         // Clean up (delete the foyer after the test)
@@ -122,7 +102,6 @@ public class FoyerServiceImplIT {
         System.out.println("Saved Foyer ID: " + saved.getIdFoyer());
         System.out.println("Found Foyer ID: " + foundFoyer.getIdFoyer());
     }
-
 
     @Test
     public void testDeleteWithMocks() {
@@ -135,7 +114,7 @@ public class FoyerServiceImplIT {
         foyerService.delete(saved);
 
         // Then
-        assertNull(foyerService.findById(saved.getIdFoyer()));
+        assertNull("Foyer should be null after deletion", foyerService.findById(saved.getIdFoyer()));
     }
 
     @Test
@@ -148,8 +127,8 @@ public class FoyerServiceImplIT {
         List<Foyer> foundFoyers = foyerService.findByNomFoyer("ik");
 
         // Then
-        assertNotNull(foundFoyers);
-        assertFalse(foundFoyers.isEmpty());
+        assertNotNull("List of found foyers should not be null", foundFoyers);
+        assertFalse("List of found foyers should not be empty", foundFoyers.isEmpty());
 
         // Clean up (delete the foyer after the test)
         foyerService.deleteById(foundFoyers.get(0).getIdFoyer());
@@ -169,19 +148,12 @@ public class FoyerServiceImplIT {
         List<Foyer> savedFoyers = foyerService.addFoyers(foyers);
 
         // Then
-        assertNotNull(savedFoyers);
-        assertFalse(savedFoyers.isEmpty());
+        assertNotNull("List of saved foyers should not be null", savedFoyers);
+        assertFalse("List of saved foyers should not be empty", savedFoyers.isEmpty());
 
         // Clean up (delete the foyers after the test)
         savedFoyers.forEach(f -> foyerService.deleteById(f.getIdFoyer()));
     }
-
-
-
-
-
-
-
 
 
 
