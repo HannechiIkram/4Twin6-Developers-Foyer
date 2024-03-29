@@ -121,7 +121,17 @@ public class FoyerServiceImplIT {
         // Then
         assertNull("Foyer should be null after deletion", foyerService.findById(saved.getIdFoyer()));
     }
+    @Test
+    public void testDeleteByIdWithMocks() {
+        // Given
+        long id = 1L;
 
+        // When
+        foyerService.deleteById(id);
+
+        // Then
+        verify(foyerRepository).deleteById(id);
+    }
     @Test
     public void testFindByNomFoyerwithMocks() {
         // Given
@@ -160,7 +170,102 @@ public class FoyerServiceImplIT {
         savedFoyers.forEach(f -> foyerService.deleteById(f.getIdFoyer()));
     }
 
+    @Test
+    public void testFindFoyerByNomFoyerWithMocks() {
+        // Given
+        String nomFoyer = "ik";
+        Foyer foyer = new Foyer().builder().nomFoyer(nomFoyer).capaciteFoyer(500).build();
+        when(foyerRepository.findFoyerByNomFoyer(nomFoyer)).thenReturn(foyer);
+
+        // When
+        Foyer foundFoyer = foyerRepository.findFoyerByNomFoyer(nomFoyer);
+
+        // Then
+        assertNotNull(foundFoyer);
+        assertEquals(nomFoyer, foundFoyer.getNomFoyer());
+    }
+    @Test
+    public void testEditFoyerWithNonExistingId() {
+        // Given
+        Foyer foyer = Foyer.builder().idFoyer(1).nomFoyer("ik").capaciteFoyer(500).build();
+
+        // When
+        Foyer saved = foyerService.editFoyer(foyer);
+
+        // Then
+        assertNull("Saved foyer should be null when editing with non-existing ID",saved);
+    }
+
+    @Test
+    public void testFindAllWhenNoFoyersExist() {
+        // Given no foyers in the repository
+
+        // When
+        List<Foyer> allFoyers = foyerService.findAll();
+
+        // Then
+        assertNotNull("List of foyers should not be null",allFoyers);
+        assertTrue("List of foyers should be empty when no foyers exist",allFoyers.isEmpty());
+    }
+
+    @Test
+    public void testFindByIdWithNonExistingId() {
+        // Given a non-existing foyer ID
+
+        // When
+        Foyer foundFoyer = foyerService.findById(999L);
+
+        // Then
+        assertNull( "Found foyer should be null when ID does not exist",foundFoyer);
+    }
+
+    @Test
+    public void testFindByNomFoyerWithNonExistingNom() {
+        // Given a non-existing foyer name
+
+        // When
+        List<Foyer> foundFoyers = foyerService.findByNomFoyer("non_existing_nom");
+
+        // Then
+        assertNotNull("List of found foyers should not be null",foundFoyers);
+        assertTrue("List of found foyers should be empty when nom does not exist",foundFoyers.isEmpty());
+    }
+
+    @Test
+    public void testDeleteWithNullInput() {
+        // Given
+        Foyer foyer = null;
+
+        // When
+        foyerService.delete(foyer);
+
+        // Then
+        // No exception should be thrown
+    }
+
+    @Test
+    public void testDeleteByIdWithNonExistingId() {
+        // Given a non-existing foyer ID
+
+        // When
+        foyerService.deleteById(999L);
+
+        // Then
+        // No exception should be thrown
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
 }
+
+

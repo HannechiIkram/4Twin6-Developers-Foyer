@@ -4,6 +4,7 @@ package com.example.foyer.service.foyer;
 import com.example.foyer.service.foyer.entity.Foyer;
 import com.example.foyer.service.foyer.repository.FoyerRepo;
 import com.example.foyer.service.foyer.service.foyer.FoyerService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,9 +32,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class FoyerServiceImplTest {
   @Autowired
 FoyerService foyerService ;
+    @Autowired
+FoyerRepo foyerRepo;
 
-
-    FoyerRepo foyerRepo; // Autowire FoyerRepo
 
 
 
@@ -62,7 +64,7 @@ FoyerService foyerService ;
         assertNotEquals(0, saved.getIdFoyer());
     }
 
-   /* @Test
+    @Test
     void testFindAll() {
         // Given
         Foyer foyer1 = new Foyer();
@@ -81,7 +83,7 @@ FoyerService foyerService ;
         // Then
         assertNotNull(allFoyers);
         assertEquals(2, allFoyers.size());
-    }*/
+    }
 
     @Test
     void testFindById() {
@@ -140,4 +142,60 @@ FoyerService foyerService ;
         assertNotNull(savedFoyers);
         assertFalse(savedFoyers.isEmpty());
     }
+
+
+
+    @Test
+    void testFindByIdWithNonExistingId() {
+        // Given
+        long nonExistingId = 1000;
+
+        // When
+        Foyer foundFoyer = foyerService.findById(nonExistingId);
+
+        // Then
+        assertNull(foundFoyer);
+    }
+    @Test
+    void testDeleteNonExistingFoyer() {
+        // Given
+        Foyer nonExistingFoyer = Foyer.builder().idFoyer(1000).nomFoyer("ik").capaciteFoyer(500).build();
+
+        // When
+        foyerService.delete(nonExistingFoyer);
+
+        // Then
+        assertNull(foyerService.findById(nonExistingFoyer.getIdFoyer()));
+    }
+
+
+    @Test
+    void testFindByNonExistingNomFoyer() {
+        // Given
+        String nonExistingNomFoyer = "nonExistingNomFoyer";
+
+        // When
+        List<Foyer> foundFoyers = foyerService.findByNomFoyer(nonExistingNomFoyer);
+
+        // Then
+        assertNotNull(foundFoyers);
+        assertTrue(foundFoyers.isEmpty());
+    }
+
+    @Test
+    void testAddEmptyFoyersList() {
+        // Given an empty list of foyers
+
+        // When
+        List<Foyer> savedFoyers = foyerService.addFoyers(Collections.emptyList());
+
+        // Then
+        assertNotNull(savedFoyers);
+        assertTrue(savedFoyers.isEmpty());
+    }
+
+
+
+
+
 }
