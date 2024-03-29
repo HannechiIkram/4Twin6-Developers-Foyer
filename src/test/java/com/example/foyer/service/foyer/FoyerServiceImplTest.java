@@ -17,8 +17,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ActiveProfiles("test")
 
@@ -194,6 +198,35 @@ FoyerRepo foyerRepo;
         assertTrue(savedFoyers.isEmpty());
     }
 
+
+
+
+    @Test
+    void testFindAllWhenNoFoyersExist() {
+        // Given no foyers in the repository
+
+        // When
+        List<Foyer> allFoyers = foyerService.findAll();
+
+        // Then
+        assertNotNull(allFoyers,"List of foyers should not be null");
+        assertTrue( allFoyers.isEmpty(),"List of foyers should be empty when no foyers exist");
+    }
+
+
+
+
+    @Test
+    void testFindByNomFoyerWithNonExistingNom() {
+        // Given a non-existing foyer name
+
+        // When
+        List<Foyer> foundFoyers = foyerService.findByNomFoyer("non_existing_nom");
+
+        // Then
+        assertNotNull(foundFoyers,"List of found foyers should not be null");
+        assertTrue(foundFoyers.isEmpty(),"List of found foyers should be empty when nom does not exist");
+    }
 
 
 

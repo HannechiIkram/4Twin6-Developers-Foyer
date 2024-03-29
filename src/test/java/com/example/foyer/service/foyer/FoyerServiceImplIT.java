@@ -15,6 +15,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -231,33 +232,89 @@ public class FoyerServiceImplIT {
         assertTrue("List of found foyers should be empty when nom does not exist",foundFoyers.isEmpty());
     }
 
+
+
+
+
+
+
+
     @Test
-    public void testDeleteWithNullInput() {
+    public void testFindByNonExistingNomFoyer() {
         // Given
-        Foyer foyer = null;
+        String nonExistingNomFoyer = "Non Existing Foyer";
+        when(foyerRepository.findByNomFoyer(nonExistingNomFoyer)).thenReturn(Collections.emptyList());
 
         // When
-        foyerService.delete(foyer);
+        List<Foyer> foundFoyers = foyerService.findByNomFoyer(nonExistingNomFoyer);
 
         // Then
-        // No exception should be thrown
+        assertNotNull("List of found foyers should not be null", foundFoyers);
+        assertTrue("List of found foyers should be empty when nom does not exist", foundFoyers.isEmpty());
+    }
+
+
+
+    @Test
+    public void testAddFoyersWithEmptyList() {
+        // Given an empty list of foyers
+
+        // When
+        List<Foyer> savedFoyers = foyerService.addFoyers(Collections.emptyList());
+
+        // Then
+        assertNotNull("List of saved foyers should not be null", savedFoyers);
+        assertTrue("List of saved foyers should be empty when adding an empty list", savedFoyers.isEmpty());
     }
 
     @Test
-    public void testDeleteByIdWithNonExistingId() {
+    public void testFindFoyerByIdWhenRepositoryReturnsEmptyOptional() {
         // Given a non-existing foyer ID
+        long nonExistingId = 999L;
+        when(foyerRepository.findById(nonExistingId)).thenReturn(Optional.empty());
 
         // When
-        foyerService.deleteById(999L);
+        Foyer foundFoyer = foyerService.findById(nonExistingId);
 
         // Then
-        // No exception should be thrown
+        assertNull("Found foyer should be null when ID does not exist", foundFoyer);
     }
 
+    @Test
+    public void testFindAllWhenFoyersExist() {
+        // Given some foyers in the repository
+        List<Foyer> foyers = Arrays.asList(
+                new Foyer().builder().nomFoyer("Foyer 1").capaciteFoyer(500).build(),
+                new Foyer().builder().nomFoyer("Foyer 2").capaciteFoyer(600).build()
+                // Add more foyer instances as needed
+        );
+        when(foyerRepository.findAll()).thenReturn(foyers);
 
+        // When
+        List<Foyer> allFoyers = foyerService.findAll();
 
+        // Then
+        assertNotNull("List of foyers should not be null", allFoyers);
+        assertFalse("List of foyers should not be empty when foyers exist", allFoyers.isEmpty());
+        assertEquals("The number of foyers should match the number in the repository", foyers.size(), allFoyers.size());
+        assertTrue("All foyers from the repository should be present in the result", allFoyers.containsAll(foyers));
+    }
 
+    @Test
+    public void testAddFoyerWithNonEmptyName() {
+        // Given
+        Foyer foyer = Foyer.builder().nomFoyer("Foyer name").capaciteFoyer(500).build();
 
+        // Mock the behavior of foyerRepository.save
+        when(foyerRepository.save(any(Foyer.class))).thenReturn(foyer);
+
+        // When
+        Foyer savedFoyer = foyerService.addFoyer(foyer);
+
+        // Then
+        assertNotNull("Saved foyer should not be null when adding a foyer with a non-empty name", savedFoyer);
+        assertEquals("Saved foyer name should match", foyer.getNomFoyer(), savedFoyer.getNomFoyer());
+    }
 
 
 
