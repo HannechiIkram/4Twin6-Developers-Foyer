@@ -85,9 +85,7 @@ public class FoyerServiceImplIT {
         // Then
         assertNotNull(allFoyers,"List of foyers should not be null");
         // Add assertions as needed for the actual content of the list
-    }
-
-    @Test
+    }@Test
     public void testFindByIdWithMocks() {
         // Given
         Foyer foyer = new Foyer().builder().nomFoyer("ik").capaciteFoyer(500).build();
@@ -103,7 +101,7 @@ public class FoyerServiceImplIT {
         // When
         Foyer saved = foyerService.addFoyer(foyer);
         assertNotNull(saved,"Saved foyer should not be null");
-        assertNotNull(saved.getIdFoyer(),"Saved foyer ID should not be null");  // Ensure id is generated
+        assertNotNull(Long.valueOf(saved.getIdFoyer()), "The ID of the saved foyer should not be null");
 
         // Now, use the saved ID when setting up the findById mock
         when(foyerRepository.findById(saved.getIdFoyer())).thenReturn(Optional.of(saved));
@@ -113,6 +111,8 @@ public class FoyerServiceImplIT {
 
         // Then
         assertNotNull(foundFoyer,"Found foyer should not be null");
+        assertNotNull(Long.valueOf(foundFoyer.getIdFoyer()), "Found foyer ID should not be null");
+        assertEquals( "IDs should be equal",saved.getIdFoyer(), foundFoyer.getIdFoyer());
         assertEquals("ik", foundFoyer.getNomFoyer());
 
         // Clean up (delete the foyer after the test)
@@ -122,6 +122,7 @@ public class FoyerServiceImplIT {
         System.out.println("Saved Foyer ID: " + saved.getIdFoyer());
         System.out.println("Found Foyer ID: " + foundFoyer.getIdFoyer());
     }
+
 
     @Test
     public void testDeleteWithMocks() {

@@ -1,40 +1,23 @@
 package com.example.foyer.service.foyer;
 
-
 import com.example.foyer.service.foyer.entity.Foyer;
 import com.example.foyer.service.foyer.repository.FoyerRepo;
 import com.example.foyer.service.foyer.service.foyer.FoyerService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
-import static junit.framework.TestCase.assertFalse;
-import static junit.framework.TestCase.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 
 @ActiveProfiles("test")
-
 @SpringBootTest
-@RunWith(SpringRunner.class)
 
-@ExtendWith(SpringExtension.class)
-
-///
-
-class FoyerServiceImplTest {
+public class FoyerServiceImplTest {
   @Autowired
 FoyerService foyerService ;
     @Autowired
@@ -44,7 +27,7 @@ FoyerRepo foyerRepo;
 
 
     @Test
-    void testAddFoyer() {
+    public void testAddFoyer() {
         // Given
         Foyer f = Foyer.builder().idFoyer(1).nomFoyer("ik").capaciteFoyer(500).build();
 
@@ -57,7 +40,7 @@ FoyerRepo foyerRepo;
     }
 
     @Test
-    void testEditFoyer() {
+   public  void testEditFoyer() {
         // Given
         Foyer foyer = Foyer.builder().idFoyer(1).nomFoyer("ik").capaciteFoyer(500).build();
 
@@ -70,7 +53,7 @@ FoyerRepo foyerRepo;
     }
 
     @Test
-    void testFindAll() {
+   public void testFindAll() {
         // Given
         Foyer foyer1 = new Foyer();
         foyer1.setNomFoyer("ik1");
@@ -91,7 +74,7 @@ FoyerRepo foyerRepo;
     }
 
     @Test
-    void testFindById() {
+   public void testFindById() {
         // Given
         Foyer foyer = Foyer.builder().nomFoyer("ik").capaciteFoyer(500).build();
         Foyer saved = foyerService.addFoyer(foyer);
@@ -107,7 +90,7 @@ FoyerRepo foyerRepo;
 
 
     @Test
-    void testDelete() {
+    public void testDelete() {
         // Given
         Foyer foyer = Foyer.builder().nomFoyer("ik").capaciteFoyer(500).build();
         Foyer saved = foyerService.addFoyer(foyer);
@@ -120,7 +103,7 @@ FoyerRepo foyerRepo;
     }
 
     @Test
-    void testFindByNomFoyer() {
+    public void testFindByNomFoyer() {
         // Given
         Foyer foyer = Foyer.builder().nomFoyer("ik").capaciteFoyer(500).build();
         Foyer saved = foyerService.addFoyer(foyer);
@@ -134,7 +117,7 @@ FoyerRepo foyerRepo;
     }
 
     @Test
-    void testAddFoyers() {
+    public void testAddFoyers() {
         // Given
         List<Foyer> foyers = Arrays.asList(
                 Foyer.builder().nomFoyer("ik1").capaciteFoyer(500).build(),
@@ -153,7 +136,7 @@ FoyerRepo foyerRepo;
 
 
     @Test
-    void testFindByIdWithNonExistingId() {
+   public void testFindByIdWithNonExistingId() {
         // Given
         long nonExistingId = 1000;
 
@@ -164,7 +147,7 @@ FoyerRepo foyerRepo;
         assertNull(foundFoyer);
     }
     @Test
-    void testDeleteNonExistingFoyer() {
+   public void testDeleteNonExistingFoyer() {
         // Given
         Foyer nonExistingFoyer = Foyer.builder().idFoyer(1000).nomFoyer("ik").capaciteFoyer(500).build();
 
@@ -177,7 +160,7 @@ FoyerRepo foyerRepo;
 
 
     @Test
-    void testFindByNonExistingNomFoyer() {
+   public void testFindByNonExistingNomFoyer() {
         // Given
         String nonExistingNomFoyer = "nonExistingNomFoyer";
 
@@ -190,7 +173,7 @@ FoyerRepo foyerRepo;
     }
 
     @Test
-    void testAddEmptyFoyersList() {
+   public void testAddEmptyFoyersList() {
         // Given an empty list of foyers
 
         // When
@@ -205,7 +188,7 @@ FoyerRepo foyerRepo;
 
 
     @Test
-    void testFindAllWhenNoFoyersExist() {
+   public void testFindAllWhenNoFoyersExist() {
         // Given no foyers in the repository
 
         // When
@@ -213,14 +196,14 @@ FoyerRepo foyerRepo;
 
         // Then
         assertNotNull(allFoyers,"List of foyers should not be null");
-        assertTrue("List of foyers should be empty when no foyers exist" ,allFoyers.isEmpty());
+        assertTrue(allFoyers.isEmpty(),"List of foyers should be empty when no foyers exist" );
     }
 
 
 
 
     @Test
-    void testFindByNomFoyerWithNonExistingNom() {
+   public void testFindByNomFoyerWithNonExistingNom() {
         // Given a non-existing foyer name
 
         // When
@@ -228,7 +211,7 @@ FoyerRepo foyerRepo;
 
         // Then
         assertNotNull(foundFoyers,"List of found foyers should not be null");
-        assertTrue("List of found foyers should be empty when nom does not exist",foundFoyers.isEmpty());
+        assertTrue(foundFoyers.isEmpty(),"List of found foyers should be empty when nom does not exist");
     }
 
 
