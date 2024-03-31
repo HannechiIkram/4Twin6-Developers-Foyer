@@ -21,6 +21,7 @@ import java.util.Optional;
 
 import static junit.framework.TestCase.*;
 import static junit.framework.TestCase.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 
@@ -36,7 +37,20 @@ public class FoyerServiceImplIT {
 
     @InjectMocks
     private FoyerService foyerService; // The class under test
+    @Test
 
+    public void testFindByIdd() {
+        // Given
+        Foyer foyer = new Foyer();
+        when(foyerRepository.findById(anyLong())).thenReturn(Optional.of(foyer));
+
+        // When
+        Foyer foundFoyer = foyerService.findById(1L);
+
+        // Then
+        assertNotNull(foundFoyer);
+        // Add more assertions as needed
+    }
     @Test
     public void testAddFoyerWithEmptyName() {
         // Given
@@ -69,7 +83,7 @@ public class FoyerServiceImplIT {
         List<Foyer> allFoyers = foyerService.findAll();
 
         // Then
-        assertNotNull("List of foyers should not be null", allFoyers);
+        assertNotNull(allFoyers,"List of foyers should not be null");
         // Add assertions as needed for the actual content of the list
     }
 
@@ -88,8 +102,8 @@ public class FoyerServiceImplIT {
 
         // When
         Foyer saved = foyerService.addFoyer(foyer);
-        assertNotNull("Saved foyer should not be null", saved);
-        assertNotNull("Saved foyer ID should not be null", saved.getIdFoyer());  // Ensure id is generated
+        assertNotNull(saved,"Saved foyer should not be null");
+        assertNotNull(saved.getIdFoyer(),"Saved foyer ID should not be null");  // Ensure id is generated
 
         // Now, use the saved ID when setting up the findById mock
         when(foyerRepository.findById(saved.getIdFoyer())).thenReturn(Optional.of(saved));
@@ -98,7 +112,7 @@ public class FoyerServiceImplIT {
         Foyer foundFoyer = foyerService.findById(saved.getIdFoyer());
 
         // Then
-        assertNotNull("Found foyer should not be null", foundFoyer);
+        assertNotNull(foundFoyer,"Found foyer should not be null");
         assertEquals("ik", foundFoyer.getNomFoyer());
 
         // Clean up (delete the foyer after the test)
@@ -143,7 +157,7 @@ public class FoyerServiceImplIT {
         List<Foyer> foundFoyers = foyerService.findByNomFoyer("ik");
 
         // Then
-        assertNotNull("List of found foyers should not be null", foundFoyers);
+        assertNotNull(foundFoyers,"List of found foyers should not be null");
         assertFalse("List of found foyers should not be empty", foundFoyers.isEmpty());
 
         // Clean up (delete the foyer after the test)
@@ -164,7 +178,7 @@ public class FoyerServiceImplIT {
         List<Foyer> savedFoyers = foyerService.addFoyers(foyers);
 
         // Then
-        assertNotNull("List of saved foyers should not be null", savedFoyers);
+        assertNotNull(savedFoyers,"List of saved foyers should not be null");
         assertFalse("List of saved foyers should not be empty", savedFoyers.isEmpty());
 
         // Clean up (delete the foyers after the test)
@@ -205,7 +219,7 @@ public class FoyerServiceImplIT {
         List<Foyer> allFoyers = foyerService.findAll();
 
         // Then
-        assertNotNull("List of foyers should not be null",allFoyers);
+        assertNotNull(allFoyers,"List of foyers should not be null");
         assertTrue("List of foyers should be empty when no foyers exist",allFoyers.isEmpty());
     }
 
@@ -228,7 +242,7 @@ public class FoyerServiceImplIT {
         List<Foyer> foundFoyers = foyerService.findByNomFoyer("non_existing_nom");
 
         // Then
-        assertNotNull("List of found foyers should not be null",foundFoyers);
+        assertNotNull(foundFoyers,"List of found foyers should not be null");
         assertTrue("List of found foyers should be empty when nom does not exist",foundFoyers.isEmpty());
     }
 
@@ -249,7 +263,7 @@ public class FoyerServiceImplIT {
         List<Foyer> foundFoyers = foyerService.findByNomFoyer(nonExistingNomFoyer);
 
         // Then
-        assertNotNull("List of found foyers should not be null", foundFoyers);
+        assertNotNull(foundFoyers,"List of found foyers should not be null");
         assertTrue("List of found foyers should be empty when nom does not exist", foundFoyers.isEmpty());
     }
 
@@ -263,7 +277,7 @@ public class FoyerServiceImplIT {
         List<Foyer> savedFoyers = foyerService.addFoyers(Collections.emptyList());
 
         // Then
-        assertNotNull("List of saved foyers should not be null", savedFoyers);
+        assertNotNull(savedFoyers,"List of saved foyers should not be null");
         assertTrue("List of saved foyers should be empty when adding an empty list", savedFoyers.isEmpty());
     }
 
@@ -294,7 +308,7 @@ public class FoyerServiceImplIT {
         List<Foyer> allFoyers = foyerService.findAll();
 
         // Then
-        assertNotNull("List of foyers should not be null", allFoyers);
+        assertNotNull(allFoyers,"List of foyers should not be null");
         assertFalse("List of foyers should not be empty when foyers exist", allFoyers.isEmpty());
         assertEquals("The number of foyers should match the number in the repository", foyers.size(), allFoyers.size());
         assertTrue("All foyers from the repository should be present in the result", allFoyers.containsAll(foyers));
@@ -312,15 +326,9 @@ public class FoyerServiceImplIT {
         Foyer savedFoyer = foyerService.addFoyer(foyer);
 
         // Then
-        assertNotNull("Saved foyer should not be null when adding a foyer with a non-empty name", savedFoyer);
+        assertNotNull( savedFoyer,"Saved foyer should not be null when adding a foyer with a non-empty name");
         assertEquals("Saved foyer name should match", foyer.getNomFoyer(), savedFoyer.getNomFoyer());
     }
-
-
-
-
-
-
 
 
 }

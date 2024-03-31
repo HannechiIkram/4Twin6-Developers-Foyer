@@ -19,10 +19,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ActiveProfiles("test")
 
@@ -102,6 +103,8 @@ FoyerRepo foyerRepo;
         assertNotNull(foundFoyer);
         assertEquals("ik", foundFoyer.getNomFoyer());
     }
+    // Example of a test case using Mockito mock objects
+
 
     @Test
     void testDelete() {
@@ -210,7 +213,7 @@ FoyerRepo foyerRepo;
 
         // Then
         assertNotNull(allFoyers,"List of foyers should not be null");
-        assertTrue( allFoyers.isEmpty(),"List of foyers should be empty when no foyers exist");
+        assertTrue("List of foyers should be empty when no foyers exist" ,allFoyers.isEmpty());
     }
 
 
@@ -225,8 +228,11 @@ FoyerRepo foyerRepo;
 
         // Then
         assertNotNull(foundFoyers,"List of found foyers should not be null");
-        assertTrue(foundFoyers.isEmpty(),"List of found foyers should be empty when nom does not exist");
+        assertTrue("List of found foyers should be empty when nom does not exist",foundFoyers.isEmpty());
     }
+
+
+
 
 
 
