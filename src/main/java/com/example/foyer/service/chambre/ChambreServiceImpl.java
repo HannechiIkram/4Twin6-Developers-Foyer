@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional; 
-import javax.persistence.EntityNotFoundException; 
 
 
 @Service
@@ -43,7 +42,8 @@ public Chambre findById(long id) {
     if (chambreOptional.isPresent()) {
         return chambreOptional.get();
     } else {
-        throw new EntityNotFoundException("Chambre not found with id: " + id);
+        throw new RuntimeException("Chambre not found with id: " + id);
+
     }
 }
 
