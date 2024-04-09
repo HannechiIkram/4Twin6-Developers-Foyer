@@ -137,6 +137,10 @@ public class FoyerServiceImplIT {
         // Then
         assertNull("Foyer should be null after deletion", foyerService.findById(saved.getIdFoyer()));
     }
+    ///////////
+
+
+
     @Test
     public void testDeleteByIdWithMocks() {
         // Given
