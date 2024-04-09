@@ -34,10 +34,15 @@ public class ChambreServiceImpl implements IChambreService {
         return chambreRepository.findAll();
     }
 
-    @Override
-    public Chambre findById(long id) {
-        return chambreRepository.findById(id).get();
+   @Override
+public Chambre findById(long id) {
+    Optional<Chambre> chambreOptional = chambreRepository.findById(id);
+    if (chambreOptional.isPresent()) {
+        return chambreOptional.get();
+    } else {
+        throw new EntityNotFoundException("Chambre not found with id: " + id);
     }
+}
 
     @Override
     public String deleteById(long id) {
