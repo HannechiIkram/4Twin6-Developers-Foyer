@@ -1,0 +1,241 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > FoyerService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.foyer.service.foyer.service.foyer</a>
+</div>
+
+<h1>Coverage Summary for Class: FoyerService (com.example.foyer.service.foyer.service.foyer)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FoyerService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    39,1%
+  </span>
+  <span class="absValue">
+    (9/23)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    34,5%
+  </span>
+  <span class="absValue">
+    (10/29)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.foyer.service.foyer.service.foyer;
+&nbsp;
+&nbsp;import com.example.foyer.service.foyer.entity.Foyer;
+&nbsp;import com.example.foyer.service.foyer.repository.FoyerRepo;
+&nbsp;import lombok.AllArgsConstructor;
+&nbsp;import org.springframework.data.domain.Sort;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;@Service
+<b class="fc">&nbsp;@AllArgsConstructor</b>
+&nbsp;public class FoyerService implements IFoyerService {
+&nbsp;FoyerRepo foyerRepository;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Foyer addFoyer(Foyer f) {
+<b class="fc">&nbsp;        return foyerRepository.save(f);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Foyer&gt; addFoyers(List&lt;Foyer&gt; foyers) {
+<b class="fc">&nbsp;        return foyerRepository.saveAll(foyers);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Foyer editFoyer(Foyer f) {
+<b class="fc">&nbsp;        return foyerRepository.save(f);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Foyer&gt; findAll() {
+<b class="fc">&nbsp;        return foyerRepository.findAll();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;   @Override
+&nbsp;   public Foyer findById(long id) {
+<b class="fc">&nbsp;       Optional&lt;Foyer&gt; optionalFoyer = foyerRepository.findById(id);</b>
+<b class="fc">&nbsp;       return optionalFoyer.orElse(null);</b>
+&nbsp;   }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void deleteById(long id) {
+<b class="fc">&nbsp;        foyerRepository.deleteById(id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void delete(Foyer f) {
+<b class="fc">&nbsp;        foyerRepository.delete(f);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Foyer&gt; findByNomFoyer(String nomFoyer) {
+<b class="fc">&nbsp;        return foyerRepository.findByNomFoyer(nomFoyer);</b>
+&nbsp;    }
+&nbsp;@Override
+&nbsp;    public Foyer updateFoyerCapacity(long id, long newCapacity) {
+<b class="nc">&nbsp;        Optional&lt;Foyer&gt; optionalFoyer = foyerRepository.findById(id);</b>
+<b class="nc">&nbsp;        if (optionalFoyer.isPresent()) {</b>
+<b class="nc">&nbsp;            Foyer foyer = optionalFoyer.get();</b>
+<b class="nc">&nbsp;            foyer.setCapaciteFoyer(newCapacity);</b>
+<b class="nc">&nbsp;            return foyerRepository.save(foyer);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            return null; // or throw an exception indicating foyer not found</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    // Existing methods...
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Foyer&gt; findAllByCapacityGreaterThan(long capacity) {
+<b class="nc">&nbsp;        return foyerRepository.findAllByCapaciteFoyerGreaterThan(capacity);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Foyer&gt; findAllByCapacityLessThan(long capacity) {
+<b class="nc">&nbsp;        return foyerRepository.findAllByCapaciteFoyerLessThan(capacity);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Foyer&gt; findAllFoyersSortedByName() {
+<b class="nc">&nbsp;        return foyerRepository.findAll(Sort.by(Sort.Direction.ASC, &quot;nomFoyer&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Foyer&gt; findAllFoyersSortedByCapacity() {
+<b class="nc">&nbsp;        return foyerRepository.findAll(Sort.by(Sort.Direction.ASC, &quot;capaciteFoyer&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Foyer&gt; findAllFoyersSortedByCapacityDesc() {
+<b class="nc">&nbsp;        return foyerRepository.findAll(Sort.by(Sort.Direction.DESC, &quot;capaciteFoyer&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Foyer&gt; findAllFoyersSortedByNomFoyerLength() {
+<b class="nc">&nbsp;        return foyerRepository.findAll(Sort.by(Sort.Direction.ASC, &quot;nomFoyer&quot;).and(Sort.by(&quot;capaciteFoyer&quot;)));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Foyer&gt; findAllFoyersWithCapacityInRange(long minCapacity, long maxCapacity) {
+<b class="nc">&nbsp;        return foyerRepository.findAllByCapaciteFoyerBetween(minCapacity, maxCapacity);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Foyer&gt; findAllFoyersWithNamesContaining(String searchTerm) {
+<b class="nc">&nbsp;        return foyerRepository.findAllByNomFoyerContaining(searchTerm);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Foyer&gt; findAllFoyersWithNamesStartingWith(String prefix) {
+<b class="nc">&nbsp;        return foyerRepository.findAllByNomFoyerStartingWith(prefix);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Foyer&gt; findAllFoyersWithNamesEndingWith(String suffix) {
+<b class="nc">&nbsp;        return foyerRepository.findAllByNomFoyerEndingWith(suffix);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Foyer&gt; findAllFoyersWithNamesContainingIgnoreCase(String searchTerm) {
+<b class="nc">&nbsp;        return foyerRepository.findAllByNomFoyerContainingIgnoreCase(searchTerm);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Foyer&gt; findAllFoyersWithNamesStartingWithIgnoreCase(String prefix) {
+<b class="nc">&nbsp;        return foyerRepository.findAllByNomFoyerStartingWithIgnoreCase(prefix);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Foyer&gt; findAllFoyersWithNamesEndingWithIgnoreCase(String suffix) {
+<b class="nc">&nbsp;        return foyerRepository.findAllByNomFoyerEndingWithIgnoreCase(suffix);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-09 12:43</div>
+</div>
+</body>
+</html>
