@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
 @SpringBootTest
-public class FoyerServiceImplTesting {
+class FoyerServiceIT {
 
     @Autowired
     FoyerService foyerService;
