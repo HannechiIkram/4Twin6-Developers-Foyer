@@ -13,7 +13,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>Foyer</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>Foyer</name>
 	<description>Foyer</description>
 	<properties>
@@ -125,7 +125,11 @@
 			<id>deploymentRepo</id>
 			<url>http://localhost:8081/repository/maven-releases/</url>
 		</repository>
-
+		<!-- Ajouter cette configuration pour permettre les déploiements de snapshots -->
+		<snapshotRepository>
+			<id>deploymentRepo</id>
+			<url>http://localhost:8081/repository/maven-snapshots/</url>
+		</snapshotRepository>
 	</distributionManagement>
 
     </project>
