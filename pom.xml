@@ -13,7 +13,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>Foyer</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.4-snapshot</version>
 	<name>Foyer</name>
 	<description>Foyer</description>
 	<properties>
