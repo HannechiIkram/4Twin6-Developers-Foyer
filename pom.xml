@@ -12,8 +12,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>Foyer</artifactId>
-	<version>0.0.10-snapshot</version>
+	<artifactId>4Twin6-Developers-Foyer</artifactId>
+	<version>0.0.1</version>
 	<name>Foyer</name>
 	<description>Foyer</description>
 	<properties>
