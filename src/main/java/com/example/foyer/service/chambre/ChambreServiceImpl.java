@@ -3,20 +3,18 @@ package com.example.foyer.service.chambre;
 import com.example.foyer.entity.Chambre;
 import com.example.foyer.entity.TypeChambre;
 import com.example.foyer.repository.ChambreRepo;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 @AllArgsConstructor
 public class ChambreServiceImpl implements IChambreService {
-    @Autowired
     ChambreRepo chambreRepository;
-   // BlocRepo blocRepository;
+    // BlocRepo blocRepository;
 
     @Override
     public Chambre addChambre(Chambre c) {
@@ -44,9 +42,8 @@ public class ChambreServiceImpl implements IChambreService {
         if (chambreOptional.isPresent()) {
             return chambreOptional.get();
         } else {
-            // Gérer le cas où la chambre avec l'ID spécifié n'est pas trouvée
-            // Par exemple, lancer une exception ou retourner une valeur par défaut
             throw new RuntimeException("Chambre not found with id: " + id);
+
         }
     }
 
