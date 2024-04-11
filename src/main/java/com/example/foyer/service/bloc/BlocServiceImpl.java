@@ -3,6 +3,7 @@ package com.example.foyer.service.bloc;
 import com.example.foyer.entity.Bloc;
 import com.example.foyer.repository.BlocRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class BlocServiceImpl implements IBlocService{
 
+    @Autowired
     BlocRepo blocRepository;
 
 
