@@ -1,4 +1,4 @@
-package com.example.foyer.controller;
+package com.example.foyer.Controller;
 
 import com.example.foyer.entity.Chambre;
 import com.example.foyer.entity.TypeChambre;
