@@ -124,5 +124,15 @@
         </plugin>
 		</plugins>
 	</build>
-
+<distributionManagement>
+		<repository>
+			<id>deploymentRepo</id>
+			<url>http://localhost:8081/repository/maven-releases/</url>
+		</repository>
+		<!-- Ajouter cette configuration pour permettre les déploiements de snapshots -->
+		<snapshotRepository>
+			<id>deploymentRepo</id>
+			<url>http://localhost:8081/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
