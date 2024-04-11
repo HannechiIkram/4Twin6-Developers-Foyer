@@ -5,10 +5,7 @@ import com.example.foyer.repository.BlocRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -18,18 +15,18 @@ public class BlocServiceImpl implements IBlocService{
     BlocRepo blocRepository;
 
 
-  /*  @Override
+    @Override
     public Bloc addBloc(Bloc b) {
-        List<Chambre> chambres = (List<Chambre>) b.getChambres();
+     /*   List<Chambre> chambres = (List<Chambre>) b.getChambres();
         b = blocRepository.save(b);
         for (Chambre chambre : chambres) {
             chambre.setBloc(b);
             chambreRepository.save(chambre);
-        }
-        return b; //on ajoute une ligne
+        }*/
+        return blocRepository.save(b); //on ajoute une ligne
     }
 
-   */
+
 
     @Override
     public List<Bloc> addBlocs(List<Bloc> blocs) {
@@ -109,43 +106,5 @@ public class BlocServiceImpl implements IBlocService{
     }
 
 
-/*
-    @Override
-    public Bloc affecterChambresABloc(List<Integer> numChambre, String nomBloc) {
-        Bloc b = blocRepository.getBlocByNomBloc(nomBloc);
-        numChambre.forEach(numero ->{
-            Chambre c = chambreRepository.findByNumeroChambre(numero);
-            c.setBloc(b);
-            chambreRepository.save(c);
 
-        });
-        return b ;
-    }
-
-    @Override
-    public Bloc desaffecterChambreABloc(long idBloc) {
-        Bloc bloc = blocRepository.findById(idBloc).orElse(null);
-
-        if (bloc != null) {
-            List<Chambre> chambres = bloc.getChambres();
-            for (Chambre chambre : chambres) {
-                chambre.setBloc(null);
-            }
-            bloc.setChambres(chambres);
-            blocRepository.save(bloc);
-        }
-        return bloc;
-    }
-
-    @Override
-    public Bloc affecterBlocAFoyer(String nomBloc, String nomFoyer) {
-        Bloc b = blocRepository.getBlocByNomBloc(nomBloc);
-        Foyer f = foyerRepository.findFoyerByNomFoyer(nomFoyer);
-        ////////////// PARENT HOWA BLOC
-        b.setFoyer(f);
-        return blocRepository.save(b);
-    }
-
-
- */
 }

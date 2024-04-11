@@ -7,7 +7,7 @@ import java.util.List;
 public interface IBlocService {
 
 
-
+    Bloc addBloc(Bloc b);
 
     List<Bloc> addBlocs(List<Bloc>blocs);
     Bloc editBloc (Bloc b);
@@ -29,14 +29,5 @@ public interface IBlocService {
     List<Bloc> findAllByOrderByNomBlocAsc();
     List<Bloc> findByNomBlocOrCapaciteBloc(String nomBloc, int capaciteBloc);
 
-/*
-    Bloc affecterChambresABloc(List<Integer> numChambre, String nomBloc);
 
-    Bloc desaffecterChambreABloc(long idBloc);
-
-    Bloc affecterBlocAFoyer(String nomBloc, String nomFoyer);
-
-
-
- */
 }

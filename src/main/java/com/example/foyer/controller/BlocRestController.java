@@ -1,4 +1,4 @@
-package com.example.foyer.controller;
+package com.example.foyer.Controller;
 
 
 
@@ -21,12 +21,11 @@ public class BlocRestController {
     List<Bloc> findAll() {
         return iBlocService.findAll();
     }
-/*
+
     @PostMapping("/addBloc")
     Bloc addBloc(@RequestBody Bloc b) {
         return iBlocService.addBloc(b);
     }
-*/
     @GetMapping("findById/{id}")
     Bloc findById(@PathVariable("id") long id) {
         return iBlocService.findById(id);
@@ -92,17 +91,5 @@ public class BlocRestController {
         return iBlocService.findByNomBlocOrCapaciteBloc(nomBloc, capaciteBloc);
     }
 
-    @PutMapping("affecterChambreABloc/{nomBloc}")
-    Bloc affecterChambresABloc(@RequestBody List<Integer> numeros , @PathVariable("nomBloc") String nomBloc){
-        return iBlocService.affecterChambresABloc(numeros , nomBloc);
-    }
-    @PutMapping("desaffecterChambreABloc/{idBloc}")
-    Bloc desaffecterChambreABloc(@PathVariable("idBloc") long idBloc) {
-        return iBlocService.desaffecterChambreABloc(idBloc);
-    }
-    @PutMapping("affecterBlocFoyer/{nomBloc}/{nomFoyer}")
-    Bloc affecterBlocAFoyer(@PathVariable("nomBloc") String nomBloc ,
-                            @PathVariable("nomFoyer") String nomFoyer){
-        return iBlocService.affecterBlocAFoyer(nomBloc, nomFoyer);
-    }
+
 }
