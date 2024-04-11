@@ -48,7 +48,7 @@ public class BlocImplTest {
         // Add the Bloc to the service
         Bloc blocajouté = blocService.addBloc(bloctest);
 
-        // Now, blocajouté should have the associated chambre
+
         //  Assertions.assertNotNull(blocajouté.getIdBloc());
         assertNotEquals(0, blocajouté.getIdBloc());
     }
