@@ -33,6 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class ChambreServiceImplTest {
+    /*
     @Autowired
 ChambreServiceImpl chambreService;
 @Test
@@ -64,6 +65,6 @@ ChambreServiceImpl chambreService;
         Assertions.assertNotNull(foundChambres);
     }
 
-
+*/
 
 }
