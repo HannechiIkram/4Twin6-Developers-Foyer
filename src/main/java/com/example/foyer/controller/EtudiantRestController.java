@@ -42,7 +42,7 @@ public class EtudiantRestController {
     @GetMapping("/getEtudiants")
     public ResponseEntity<List<Etudiant>> getAllEtudiants(){
         List<Etudiant> liste=service.getAllEtudiants();
-        return new ResponseEntity<List<Etudiant>>(liste, HttpStatus.OK);
+        return new ResponseEntity<>(liste, HttpStatus.OK);
     }
     @GetMapping("/getby/{id}") Etudiant findById(@PathVariable("id") Long id){ return service.findById(id);}
 
