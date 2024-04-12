@@ -74,7 +74,7 @@
 	</build>
 	<properties>
     
-	
+	<sonar.java.binaries>target/classes</sonar.java.binaries>
     <sonar.projectKey>Samar-Rebhi-Foyer-Etudiant</sonar.projectKey>
 
 
