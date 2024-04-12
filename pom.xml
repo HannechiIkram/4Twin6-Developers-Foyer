@@ -21,6 +21,13 @@
 
         <sonar.host.url>http://192.168.1.15:9000</sonar.host.url>
 	</properties>
+	<!-- Deploy to Nexus -->
+	<distributionManagement>
+		<repository>
+		<id>deploymentRepo</id>
+		<url>http://http://192.168.1.15/:8082/repository/maven-releases/</url>
+		</repository>
+	</distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -71,6 +78,8 @@
 		<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+
 
 	<build>
 		<plugins>
