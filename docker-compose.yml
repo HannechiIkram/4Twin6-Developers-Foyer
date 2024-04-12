@@ -4,7 +4,7 @@ services:
     build: .
     restart: always
     ports:
-      - 8888:8181
+      - 8889:8181
     depends_on:
       - mysqldb
 
@@ -12,7 +12,7 @@ services:
     image: "mysql:8.0"
     restart: always
     ports:
-      - 3301:3300
+      - 3301:3330
 
     environment:
       MYSQL_DATABASE: Foyer
