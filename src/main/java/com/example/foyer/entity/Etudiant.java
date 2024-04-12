@@ -45,16 +45,7 @@ public class Etudiant implements Serializable {
     private String email;
     private String mdp;
 
-/*
-    //association with table Reservation
-    @JsonIgnore
-    @OneToMany(mappedBy = "etudiant", cascade = CascadeType.ALL)
-    private Set<Reservation> reservations = new HashSet<>();
 
-
-
-    @OneToOne(cascade = CascadeType.ALL)
-    User user;*/
 }
 
 
