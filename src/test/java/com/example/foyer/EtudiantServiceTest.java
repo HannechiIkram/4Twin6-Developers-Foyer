@@ -25,7 +25,7 @@ public class EtudiantServiceTest {
     @Autowired
     EtudiantServiceImpl etudiantService;
     @Test
-    void testAddEtudiant() {
+    void addEtudiant() {
     
         Etudiant etudiant = Etudiant.builder()
                 .nomEt("samar")
