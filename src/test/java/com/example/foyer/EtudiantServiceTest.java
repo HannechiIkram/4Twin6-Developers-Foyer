@@ -29,9 +29,12 @@ public class EtudiantServiceTest {
     
         Etudiant etudiant = Etudiant.builder()
                 .nomEt("samar")
-                .cin(Long.valueOf("250"))
+                .cin(125646463186335L)
                 .email("hi00")
                 .ecole("hello")
+                .mdp("hi")
+                .prenomEt("samar")
+
                 .build();
 
       
