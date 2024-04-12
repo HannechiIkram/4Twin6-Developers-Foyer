@@ -1,5 +1,3 @@
-
-
 import com.example.foyer.entity.Etudiant;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
