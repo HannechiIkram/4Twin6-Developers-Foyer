@@ -75,7 +75,7 @@
 	<properties>
     <!-- Other properties -->
     <sonar.login>admin</sonar.login>
-    <sonar.password>samar</sonar.password>
+    <sonar.password>admin</sonar.password>
 </properties>
 
 </project>
