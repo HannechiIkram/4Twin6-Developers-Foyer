@@ -74,8 +74,9 @@
 	</build>
 	<properties>
     
-	//////////:	
-    <sonar.projectKey>com.example:Foyer</sonar.projectKey>
+	
+    <sonar.projectKey>Samar-Rebhi-Foyer-Etudiant
+</sonar.projectKey>
 
 
         <sonar.host.url>http://localhost:9000</sonar.host.url>
