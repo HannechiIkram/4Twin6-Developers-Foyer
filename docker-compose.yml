@@ -16,4 +16,4 @@ services:
 
     environment:
       MYSQL_DATABASE: Foyer
-      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      MYSQL_ALLOW_EMPTY_PASSWORD: ""
