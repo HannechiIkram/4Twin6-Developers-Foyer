@@ -21,20 +21,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class EtudiantServiceTest {
 
-
-
-
     @Autowired
     EtudiantRepository etudiantRepository;
 
     @Autowired
     EtudiantServiceImpl etudiantService;
-
-
-
     @Test
     void testAddEtudiant() {
-        // Given
+    
         Etudiant etudiant = Etudiant.builder()
                 .nomEt("samar")
                 .cin(Long.valueOf("250"))
@@ -42,10 +36,10 @@ public class EtudiantServiceTest {
                 .ecole("hello")
                 .build();
 
-        // When
+      
         Etudiant savedEtudiant = etudiantService.addEtudiant(etudiant);
 
-        // Then
+      
         assertNotNull(savedEtudiant);
         assertNotNull(savedEtudiant.getIdEtudiant());
     }}
