@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.foyer.service.IEtudiantService;
 import java.time.LocalDate;
 import java.util.List;
-
+package com.example.foyer.controller;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/Etudiants")
