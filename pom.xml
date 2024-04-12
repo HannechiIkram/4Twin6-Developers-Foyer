@@ -73,9 +73,7 @@
     </plugins>
 	</build>
 	<properties>
-    <!-- Other properties -->
-    <sonar.login>admin</sonar.login>
-    <sonar.password>admin</sonar.password>
+    
 		
         <sonar.host.url>http://localhost:9000</sonar.host.url>
    
