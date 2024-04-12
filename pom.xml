@@ -75,11 +75,10 @@
 	<properties>
     
 	
-    <sonar.projectKey>Samar-Rebhi-Foyer-Etudiant
-</sonar.projectKey>
+    <sonar.projectKey>Samar-Rebhi-Foyer-Etudiant</sonar.projectKey>
 
 
-        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <sonar.host.url>http://192.168.1.15:9000</sonar.host.url>
    
 </properties>
 
