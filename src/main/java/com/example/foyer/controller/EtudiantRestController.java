@@ -19,7 +19,7 @@ public class EtudiantRestController {
     IEtudiantService service;
 
     @PostMapping("/addEtudiant")
-    public Long addEtudiant(@RequestBody Etudiant e) {return service.addEtudiant(e);}
+    public Etudiant addEtudiant(@RequestBody Etudiant e) {return service.addEtudiant(e);}
     @PostMapping("/addEtudiants")
     public List<Etudiant> addEtudiants(@RequestBody List<Etudiant> liste)
     {

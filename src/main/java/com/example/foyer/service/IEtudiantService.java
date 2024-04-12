@@ -6,7 +6,7 @@ import com.example.foyer.entity.Etudiant;
 import java.util.List;
 
 public interface IEtudiantService {
-    Long addEtudiant(Etudiant etudiant);
+    Etudiant addEtudiant(Etudiant etudiant);
 
     List<Etudiant> addAllEtudiant(List<Etudiant> liste);
 

@@ -22,8 +22,8 @@ public class EtudiantServiceImpl implements IEtudiantService
 
 
     @Override
-    public Long addEtudiant(Etudiant etudiant) {
-        return e.save(etudiant).getIdEtudiant();
+    public Etudiant addEtudiant(Etudiant etudiant) {
+        return e.save(etudiant);
     }
 
     @Override
