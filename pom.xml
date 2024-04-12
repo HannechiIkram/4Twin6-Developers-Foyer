@@ -83,6 +83,16 @@
 
 	<build>
 		<plugins>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>3.1.1</version>
+					<configuration>
+						<skip>false</skip> <!-- Set to false when you want to perform deployment -->
+					</configuration>
+				</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
