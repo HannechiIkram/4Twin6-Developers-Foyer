@@ -17,40 +17,40 @@ import java.util.List;
 public class EtudiantRestController {
     @Autowired
     @JsonIgnore
-    IEtudiantService Service;
+    IEtudiantService service;
 
     @PostMapping("/addEtudiant")
-    public Long addEtudiant(@RequestBody Etudiant e) {return Service.addEtudiant(e);}
+    public Long addEtudiant(@RequestBody Etudiant e) {return service.addEtudiant(e);}
     @PostMapping("/addEtudiants")
     public List<Etudiant> addEtudiants(@RequestBody List<Etudiant> liste)
     {
-        return Service.addAllEtudiant(liste);
+        return service.addAllEtudiant(liste);
     }
 
     @DeleteMapping("/deletebyid/{id}")
-    void DeleteEtudiantByID(@PathVariable("id") Long id){
-        Service.deleteById(id);
+    void deleteEtudiantByID(@PathVariable("id") Long id){
+        service.deleteById(id);
     }
-    @DeleteMapping("/deleteall") String DeleteAll(){Service.deleteAll();return "all students are deleted";
+    @DeleteMapping("/deleteall") String deleteAll(){service.deleteAll();return "all students are deleted";
     }
     @PutMapping("updateEtudiant/{id}")
     Etudiant updateEtudiant(@PathVariable("id") Long id ,@RequestBody Etudiant e){
-        return  Service.editEtudiant(id,e);
+        return  service.editEtudiant(id,e);
     }
 
 
     @GetMapping("/getEtudiants")
     public ResponseEntity<List<Etudiant>> getAllEtudiants(){
-        List<Etudiant> liste=Service.getAllEtudiants();
+        List<Etudiant> liste=service.getAllEtudiants();
         return new ResponseEntity<List<Etudiant>>(liste, HttpStatus.OK);
     }
-    @GetMapping("/getby/{id}") Etudiant findById(@PathVariable("id") Long id){ return Service.findById(id);}
+    @GetMapping("/getby/{id}") Etudiant findById(@PathVariable("id") Long id){ return service.findById(id);}
 
 
 
     @GetMapping("/getbycin/{cin}")
     public ResponseEntity<Etudiant> findEtudiantBycin(@PathVariable("cin") Long cin){
-        Etudiant l=Service.findEtudiantByCin(cin);
+        Etudiant l=service.findEtudiantByCin(cin);
         return ResponseEntity.ok(l);}
 }
 
