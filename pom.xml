@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>Foyer</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>Foyer</name>
 	<description>Foyer</description>
 	<properties>
@@ -124,7 +124,8 @@
         </plugin>
 		</plugins>
 	</build>
-<distributionManagement>
+
+	<distributionManagement>
 		<repository>
 			<id>deploymentRepo</id>
 			<url>http://localhost:8081/repository/maven-releases/</url>
