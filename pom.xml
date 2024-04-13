@@ -55,6 +55,10 @@
 			<version>4.12</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -77,8 +81,34 @@
 				</configuration>
 			</plugin>
 
-
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.7</version>
+				<executions>
+					<execution>
+						<id>jacoco-initialize</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jacoco-site</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
-
+	<!-- Deploy to Nexus -->
+	<distributionManagement>
+		<!-- Ajouter cette configuration pour permettre les déploiements de snapshots -->
+		<snapshotRepository>
+			<id>deploymentRepo</id>
+			<url>http://192.168.1.16:8081/repository/nexus-Bloc/</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
