@@ -17,4 +17,10 @@ services:
     environment:
       MYSQL_DATABASE: Foyer
       MYSQL_ALLOW_EMPTY_PASSWORD: ""
+      
+  hamza-hey:
+    image: "ikram745/hamza-hey:latest"  # Assuming the latest tag
+    restart: always
+    ports:
+      - 8888:8080  # Define the ports as needed
 
