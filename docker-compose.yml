@@ -18,9 +18,3 @@ services:
       MYSQL_DATABASE: Foyer
       MYSQL_ALLOW_EMPTY_PASSWORD: ""
       
-  mili-hey:
-    image: "ikram745/mili-hey:latest"  # Assuming the latest tag
-    restart: always
-    ports:
-      - 8888:8080  # Define the ports as needed
-
