@@ -1,4 +1,4 @@
-package com.example.foyer.Controller;
+package com.example.foyer.controller;
 
 
 
@@ -20,31 +20,31 @@ public class BlocRestController {
     IBlocService iBlocService;
 
     @GetMapping("findAll")
-    List<Bloc> findAll() {
+    public List<Bloc> findAll() {
         return iBlocService.findAll();
     }
 
     @PostMapping("/addBloc")
-    Bloc addBloc(@RequestBody Bloc b) {
+    public Bloc addBloc(@RequestBody Bloc b) {
         return iBlocService.addBloc(b);
     }
     @GetMapping("findById/{id}")
-    Bloc findById(@PathVariable("id") long id) {
+    public Bloc findById(@PathVariable("id") long id) {
         return iBlocService.findById(id);
     }
 
     @DeleteMapping("deleteByID/{id}")
-    void deleteByID(@PathVariable("id") long id) {
+    public void deleteByID(@PathVariable("id") long id) {
         iBlocService.deleteById(id);
     }
 
     @DeleteMapping("deleteB")
-    void delete(@RequestBody Bloc b) {
+    public void delete(@RequestBody Bloc b) {
         iBlocService.delete(b);
     }
 
     @PutMapping("editBloc")
-    Bloc editBloc(@RequestBody Bloc b) {
+    public Bloc editBloc(@RequestBody Bloc b) {
         return iBlocService.editBloc(b);
     }
 

@@ -11,6 +11,7 @@ import org.junit.After;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -23,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
@@ -52,7 +54,18 @@ public class BlocImplTest {
         //  Assertions.assertNotNull(blocajouté.getIdBloc());
         assertNotEquals(0, blocajouté.getIdBloc());
     }
+
+
+
+    @Test
+    public void testfindAll() {
+        List<Bloc> Blocs=blocService.findAll();
+        Assertions.assertNotNull(Blocs);
+    }
+
 }
+
+
 
 
 
