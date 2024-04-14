@@ -2,6 +2,7 @@ package com.example.foyer.service;
 
 
 import com.example.foyer.entity.Etudiant;
+import org.springframework.data.crossstore.ChangeSetPersister;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface IEtudiantService {
 
     void deleteById(Long id);
 
-    Etudiant editEtudiant(Long id, Etudiant etudiant);
+    Etudiant editEtudiant(Long id, Etudiant etudiant) throws ChangeSetPersister.NotFoundException;
     void deleteAll();
 
 

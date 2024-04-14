@@ -2,6 +2,7 @@ package com.example.foyer.Controller;
 import com.example.foyer.entity.Etudiant;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,7 @@ public class EtudiantRestController {
     @DeleteMapping("/deleteall") String deleteAll(){service.deleteAll();return "all students are deleted";
     }
     @PutMapping("updateEtudiant/{id}")
-    Etudiant updateEtudiant(@PathVariable("id") Long id ,@RequestBody Etudiant e){
+    Etudiant updateEtudiant(@PathVariable("id") Long id ,@RequestBody Etudiant e) throws ChangeSetPersister.NotFoundException {
         return  service.editEtudiant(id,e);
     }
 
