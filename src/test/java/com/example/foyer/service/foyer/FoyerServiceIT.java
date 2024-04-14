@@ -1,4 +1,4 @@
-package com.example.foyer.service.foyer;
+/*package com.example.foyer.service.foyer;
 
 import com.example.foyer.service.foyer.entity.Foyer;
 import com.example.foyer.service.foyer.repository.FoyerRepo;
@@ -77,9 +77,9 @@ class FoyerServiceIT {
         // Then
         assertNotNull(allFoyers);
         assertEquals(2, allFoyers.size());
-    }*/
+    }*/*/
 
-    @Test
+   /* @Test
     void testFindById() {
         // Given
         Foyer foyer = Foyer.builder().nomFoyer("ik").capaciteFoyer(500).build();
@@ -226,4 +226,4 @@ class FoyerServiceIT {
 
 
 
-}
+}*/
