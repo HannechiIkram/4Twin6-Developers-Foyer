@@ -77,7 +77,7 @@ class FoyerServiceIT {
         // Then
         assertNotNull(allFoyers);
         assertEquals(2, allFoyers.size());
-    }*/*/
+    }*/
 
    /* @Test
     void testFindById() {
@@ -226,4 +226,4 @@ class FoyerServiceIT {
 
 
 
-}*/
+///}*/
