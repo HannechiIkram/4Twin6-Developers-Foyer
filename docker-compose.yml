@@ -1,12 +1,12 @@
 version: "3.7"
 services:
-  spring-foyer:
+  spring:
     build: .
     restart: always
     ports:
       - 8888:8181
     depends_on:
-      - mysqldb
+      - mysql
 
   mysql:
     image: "mysql:8.0"
