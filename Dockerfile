@@ -1,15 +1,6 @@
-# Use the official OpenJDK base image
-FROM openjdk:17-jre-alpine
-
-# Set the working directory in the container
+FROM openjdk:17-alpine
 WORKDIR /app
-
-# Copy the JAR file into the container
-COPY target/Foyer-0.0.1.jar /app/Foyer.jar
-
-# Expose the port that your application listens on
+RUN apk --no-cache add curl
 EXPOSE 8181
-
-# Run the JAR file
-CMD ["java", "-jar", "Foyer.jar"]
+ENTRYPOINT [ "java", "-jar", "./FoyerApplication.jar" ]
 
