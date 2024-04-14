@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/chambres")
+@CrossOrigin(origins = "http://localhost:4200")
 
 public class ChambreRestController {
     IChambreService iChambreService;
