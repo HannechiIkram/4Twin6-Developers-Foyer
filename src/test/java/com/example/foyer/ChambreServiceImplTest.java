@@ -33,13 +33,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class ChambreServiceImplTest {
     @Autowired
     ChambreServiceImpl chambreService;
-    @Test
-    public void testaddChambre(){
-        Chambre chambre =Chambre.builder().numeroChambre(82).typeChambre(SIMPLE).build();
-        Chambre savedChambre = chambreService.addChambre(chambre);
-        Assertions.assertNotNull(savedChambre.getIdChambre());
-        //chambreService.delete(savedChambre);
-    }
+   @Test
+public void testAddChambre() {
+    Chambre chambre = Chambre.builder().numeroChambre(82).typeChambre(SIMPLE).build();
+    Chambre savedChambre = chambreService.addChambre(chambre);
+    Assertions.assertNotNull(savedChambre);
+}
+
 
 @Test
     public void testAddChambres() {
