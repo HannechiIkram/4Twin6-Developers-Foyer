@@ -15,5 +15,6 @@ services:
       - 3301:3300
 
     environment:
+      MYSQL_ROOT_PASSWORD: your_root_password
       MYSQL_DATABASE: Foyer
       MYSQL_ALLOW_EMPTY_PASSWORD: ""
