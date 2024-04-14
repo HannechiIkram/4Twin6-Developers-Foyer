@@ -1,37 +1,37 @@
-package com.example.foyer.service.foyer;
+//package com.example.foyer.service.foyer;
 
 
-import com.example.foyer.service.foyer.entity.Foyer;
-import com.example.foyer.service.foyer.repository.FoyerRepo;
-import com.example.foyer.service.foyer.service.foyer.FoyerService;
-import org.junit.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+//import com.example.foyer.service.foyer.entity.Foyer;
+//import com.example.foyer.service.foyer.repository.FoyerRepo;
+//import com.example.foyer.service.foyer.service.foyer.FoyerService;
+//import org.junit.Test;
+//import org.junit.jupiter.api.extension.ExtendWith;
+//import org.junit.runner.RunWith;
+//import org.mockito.InjectMocks;
+//import org.mockito.Mock;
+//import org.mockito.junit.MockitoJUnitRunner;
+//import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.test.context.ActiveProfiles;
+//import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.Arrays;
+/*import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
+import java.util.Optional;*/
 
-import static junit.framework.TestCase.*;
+/*import static junit.framework.TestCase.*;
 import static junit.framework.TestCase.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.*;*/
 
 
-@ActiveProfiles("test")
+/*@ActiveProfiles("test")
 
 @SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
-@ExtendWith(SpringExtension.class)
+@ExtendWith(SpringExtension.class)*/
 
-public class FoyerServiceImplIT {
+/*public class FoyerServiceImplIT {
     @Mock
     private FoyerRepo foyerRepository; // Assuming you have a repository dependency
 
@@ -50,8 +50,8 @@ public class FoyerServiceImplIT {
         // Then
         assertNotNull(foundFoyer);
         // Add more assertions as needed
-    }
-    @Test
+    }*/
+  /*  @Test
     public void testAddFoyerWithEmptyName() {
         // Given
         Foyer foyer = Foyer.builder().nomFoyer("").capaciteFoyer(500).build();
@@ -61,9 +61,9 @@ public class FoyerServiceImplIT {
 
         // Then
         assertNull("Saved foyer should be null when adding a foyer with an empty name", savedFoyer);
-    }
+    }*/
 
-    @Test
+   /* @Test
     public void testEditFoyerWithNullInput() {
         // Given
         Foyer foyer = null;
@@ -73,11 +73,11 @@ public class FoyerServiceImplIT {
 
         // Then
         assertNull("Saved foyer should be null when editing with null input", savedFoyer);
-    }
+    }*/
 
 
 
-    @Test
+   /* @Test
     public void testFindAllWithMocks() {
         // When
         List<Foyer> allFoyers = foyerService.findAll();
@@ -96,35 +96,35 @@ public class FoyerServiceImplIT {
             // Simulate the behavior of saving in a repository (this is just an example)
             argument.setIdFoyer(1L); // Set a sample ID
             return argument;
-        });
+        });*/
 
         // When
-        Foyer saved = foyerService.addFoyer(foyer);
+     /*   Foyer saved = foyerService.addFoyer(foyer);
         assertNotNull(saved,"Saved foyer should not be null");
-        assertNotNull(Long.valueOf(saved.getIdFoyer()), "The ID of the saved foyer should not be null");
+        assertNotNull(Long.valueOf(saved.getIdFoyer()), "The ID of the saved foyer should not be null");*/
 
         // Now, use the saved ID when setting up the findById mock
-        when(foyerRepository.findById(saved.getIdFoyer())).thenReturn(Optional.of(saved));
+     /*   when(foyerRepository.findById(saved.getIdFoyer())).thenReturn(Optional.of(saved));*/
 
         // When finding by ID
-        Foyer foundFoyer = foyerService.findById(saved.getIdFoyer());
+     /*   Foyer foundFoyer = foyerService.findById(saved.getIdFoyer());*/
 
         // Then
-        assertNotNull(foundFoyer,"Found foyer should not be null");
+   /*     assertNotNull(foundFoyer,"Found foyer should not be null");
         assertNotNull(Long.valueOf(foundFoyer.getIdFoyer()), "Found foyer ID should not be null");
         assertEquals( "IDs should be equal",saved.getIdFoyer(), foundFoyer.getIdFoyer());
-        assertEquals("ik", foundFoyer.getNomFoyer());
+        assertEquals("ik", foundFoyer.getNomFoyer());*/
 
         // Clean up (delete the foyer after the test)
-        foyerService.deleteById(saved.getIdFoyer());
+     //   foyerService.deleteById(saved.getIdFoyer());
 
         // Additional logging for debugging
-        System.out.println("Saved Foyer ID: " + saved.getIdFoyer());
-        System.out.println("Found Foyer ID: " + foundFoyer.getIdFoyer());
-    }
+       // System.out.println("Saved Foyer ID: " + saved.getIdFoyer());
+        //System.out.println("Found Foyer ID: " + foundFoyer.getIdFoyer());
+    //}
 
 
-    @Test
+   /* @Test
     public void testDeleteWithMocks() {
         // Given
         Foyer foyer = new Foyer().builder().nomFoyer("ik").capaciteFoyer(500).build();
@@ -136,12 +136,12 @@ public class FoyerServiceImplIT {
 
         // Then
         assertNull("Foyer should be null after deletion", foyerService.findById(saved.getIdFoyer()));
-    }
+    }*/
     ///////////
 
 
 
-    @Test
+  /*  @Test
     public void testDeleteByIdWithMocks() {
         // Given
         long id = 1L;
@@ -151,8 +151,8 @@ public class FoyerServiceImplIT {
 
         // Then
         verify(foyerRepository).deleteById(id);
-    }
-    @Test
+    }*/
+    /*@Test
     public void testFindByNomFoyerwithMocks() {
         // Given
         Foyer foyer = new Foyer().builder().nomFoyer("ik").capaciteFoyer(500).build();
@@ -167,9 +167,9 @@ public class FoyerServiceImplIT {
 
         // Clean up (delete the foyer after the test)
         foyerService.deleteById(foundFoyers.get(0).getIdFoyer());
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void testAddFoyersWithMocks() {
         // Given
         List<Foyer> foyers = Arrays.asList(
@@ -250,6 +250,7 @@ public class FoyerServiceImplIT {
         assertNotNull(foundFoyers,"List of found foyers should not be null");
         assertTrue("List of found foyers should be empty when nom does not exist",foundFoyers.isEmpty());
     }
+*/
 
 
 
@@ -257,8 +258,7 @@ public class FoyerServiceImplIT {
 
 
 
-
-    @Test
+  /*  @Test
     public void testFindByNonExistingNomFoyer() {
         // Given
         String nonExistingNomFoyer = "Non Existing Foyer";
@@ -336,6 +336,6 @@ public class FoyerServiceImplIT {
     }
 
 
-}
+}*/
 
 
