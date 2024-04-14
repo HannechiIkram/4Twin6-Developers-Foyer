@@ -13,7 +13,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>4Twin6-Developers-Foyer</artifactId>
-	<version>0.0.0458723</version>
+	<version>0.0.12345-SNAPSHOT</version>
 	<name>4Twin6-Developers-Foyer</name>
 	<description>4Twin6-Developers-Foyer</description>
 	<properties>
@@ -133,15 +133,15 @@
     </build>
 
 	<distributionManagement>
-		<repository>
-			<id>deploymentRepo</id>
-			<url>http://localhost:8081/repository/maven-releases/</url>
-		</repository>
-		<!-- Ajouter cette configuration pour permettre les déploiements de snapshots -->
-		<snapshotRepository>
-			<id>deploymentRepo</id>
-			<url>http://localhost:8081/repository/maven-snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
+    <repository>
+        <id>deploymentRepo</id>
+        <url>http://localhost:8081/repository/maven-releases/</url>
+    </repository>
+    <!-- Référentiel pour les instantanés -->
+    <snapshotRepository>
+        <id>deploymentSnapshotsRepo</id>
+        <url>http://localhost:8081/repository/maven-snapshots/</url>
+    </snapshotRepository>
+</distributionManagement>
 
     </project>
