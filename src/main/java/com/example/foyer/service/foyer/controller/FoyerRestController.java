@@ -18,27 +18,27 @@ public class FoyerRestController {
     IFoyerService iFoyerService;
 
     @GetMapping("findAllF")
-    List<Foyer> findAll(){
+    public List<Foyer> findAll(){
         return iFoyerService.findAll();
     }
 
     @PostMapping("/addFoyer")
-    Foyer addFoyer(@RequestBody Foyer f){
+  public  Foyer addFoyer(@RequestBody Foyer f){
         return iFoyerService.addFoyer(f);
     }
 
     @PutMapping("UpdateFoyer")
-    Foyer updateFoyer(@RequestBody Foyer f){
+  public  Foyer updateFoyer(@RequestBody Foyer f){
         return iFoyerService.editFoyer(f);
     }
     @PutMapping("/UpdateFoyer/{id}")
-    Foyer updateFoyerId(@RequestBody Foyer f, @PathVariable long id) {
+  public  Foyer updateFoyerId(@RequestBody Foyer f, @PathVariable long id) {
         f.setIdFoyer(id);
         return iFoyerService.editFoyer(f);
     }
 
     @DeleteMapping("DeleteFoyer")
-    void deleteFoyer(@RequestBody Foyer f) {
+    public void deleteFoyer(@RequestBody Foyer f) {
         iFoyerService.delete(f);
     }
 
