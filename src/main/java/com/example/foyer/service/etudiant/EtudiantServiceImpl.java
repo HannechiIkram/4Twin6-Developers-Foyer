@@ -99,7 +99,8 @@ public class EtudiantServiceImpl implements IEtudiantService
         if (optionalEtudiant.isPresent()) {
             return optionalEtudiant.get();
         } else {
-            throw new EntityNotFoundException("Etudiant with Email " + em + msg);
+            throw new EntityNotFoundException("Etudiant with Email " + em + msg
+            );
         }
     }
 
