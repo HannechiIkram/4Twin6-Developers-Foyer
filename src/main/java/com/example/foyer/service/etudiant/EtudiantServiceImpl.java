@@ -23,7 +23,7 @@ public class EtudiantServiceImpl implements IEtudiantService
 {
     @Autowired
     EtudiantRepository e;
-
+    private static final String msg = "not found";
 
     @Override
     public Etudiant addEtudiant(Etudiant etudiant) {
@@ -46,13 +46,13 @@ public class EtudiantServiceImpl implements IEtudiantService
         if (optionalEtudiant.isPresent()) {
             return optionalEtudiant.get();
         } else {
-            throw new EntityNotFoundException("Etudiant with ID " + id + " not found");
+            throw new EntityNotFoundException("Etudiant with ID " + id + msg);
         }
     }
     @Override
     public void deleteById(Long id) {
         if (!e.existsById(id)) {
-            throw new EmptyResultDataAccessException("Etudiant with ID " + id + " not found", 1);
+            throw new EmptyResultDataAccessException("Etudiant with ID " + id + msg, 1);
         }
         e.deleteById(id);
     }
@@ -89,7 +89,7 @@ public class EtudiantServiceImpl implements IEtudiantService
         if (optionalEtudiant.isPresent()) {
             return optionalEtudiant.get();
         } else {
-            throw new EntityNotFoundException("Etudiant with Cin " + cin + " not found");
+            throw new EntityNotFoundException("Etudiant with Cin " + cin + msg);
         }
     }
 
@@ -99,7 +99,7 @@ public class EtudiantServiceImpl implements IEtudiantService
         if (optionalEtudiant.isPresent()) {
             return optionalEtudiant.get();
         } else {
-            throw new EntityNotFoundException("Etudiant with Email " + em + " not found");
+            throw new EntityNotFoundException("Etudiant with Email " + em + msg);
         }
     }
 

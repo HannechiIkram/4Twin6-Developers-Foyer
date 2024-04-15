@@ -8,9 +8,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -56,7 +58,7 @@ public class EtudiantServiceTestJunit {
         assertNotNull(responseEntity);
 
     }
-/*
+
     @Test
     void updateEtudiant() {
         // Create an Etudiant object with updated information
@@ -73,28 +75,28 @@ public class EtudiantServiceTestJunit {
         assertThrows(ChangeSetPersister.NotFoundException.class, () -> {
             etudiantService.editEtudiant(1L, updatedEtudiant);
         });
-    }*/
+    }
 
 
     @Test
     void deleteEtudiantByID() {
-        // Given
+
         Etudiant etudiantToDelete = new Etudiant(); // Create an etudiant entity
         etudiantToDelete.setIdEtudiant(1L); // Set the ID of the etudiant to delete
 
-        // When
+
         etudiantRepository.save(etudiantToDelete); // Save the etudiant to the database
 
-        // Then
-        assertThrows(EmptyResultDataAccessException.class, () -> {
-            etudiantService.deleteById(2L); // Try to delete an etudiant with a non-existent ID (2L)
-        });
+
+        assertThrows(EmptyResultDataAccessException.class, () ->
+            etudiantService.deleteById(2L)
+        );
 
         // Optional: Assert that the etudiant is not deleted from the database
         boolean isEtudiantExists = etudiantRepository.existsById(1L);
         assertTrue(isEtudiantExists);
     }
-    /*
+
     @Test
     void addEtudiants() {
         // Create a sample list of Etudiants
@@ -119,12 +121,12 @@ public class EtudiantServiceTestJunit {
         etudiants.add(etudiant2);
 
         // Call the controller method
-        List<Etudiant> savedEtudiants = etudiantService.addEtudiant(etudiants);
+        List<Etudiant> savedEtudiants = etudiantService.addAllEtudiant(etudiants);
 
         // Assertions
         assertNotNull(savedEtudiants);
         assertEquals(2, savedEtudiants.size()); // Check if all etudiants are saved
         // Add additional assertions as needed
-    }*/
+    }
 
 }
