@@ -1,6 +1,3 @@
-package com.example.foyer.service.foyer.controller;
-
-
 import com.example.foyer.service.foyer.entity.Foyer;
 import com.example.foyer.service.foyer.service.foyer.IFoyerService;
 import lombok.AllArgsConstructor;
@@ -15,6 +12,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @RequestMapping("/api/foyers")
+@CrossOrigin(origins = "*") // Allow requests from any origin
 public class FoyerRestController {
 
     IFoyerService iFoyerService;
@@ -48,5 +46,4 @@ public class FoyerRestController {
     public void deleteFoyerById(@PathVariable long id) {
         iFoyerService.deleteById(id);
     }
-
 }
