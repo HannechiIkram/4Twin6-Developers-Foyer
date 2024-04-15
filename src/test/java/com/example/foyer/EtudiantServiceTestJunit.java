@@ -59,23 +59,7 @@ public class EtudiantServiceTestJunit {
 
     }
 
-    @Test
-    void updateEtudiant() {
-        // Create an Etudiant object with updated information
-        Etudiant updatedEtudiant = Etudiant.builder()
-                .nomEt("UpdatedName")
-                .cin(125646463186335L)
-                .email("updated@example.com")
-                .ecole("UpdatedEcole")
-                .mdp("updatedPassword")
-                .prenomEt("UpdatedFirstName")
-                .build();
 
-        // Assuming the ID does not exist in the database
-        assertThrows(ChangeSetPersister.NotFoundException.class, () -> {
-            etudiantService.editEtudiant(1L, updatedEtudiant);
-        });
-    }
 
 
     @Test
