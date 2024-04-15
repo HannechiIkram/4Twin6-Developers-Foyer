@@ -4,7 +4,7 @@ services:
     build: .
     restart: always
     ports:
-      - 8888:8181
+      - 8181:8181
     depends_on:
       - mysqldb
 
