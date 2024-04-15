@@ -1,5 +1,4 @@
 package com.example.foyer;
-import com.example.foyer.service.IEtudiantService;
 import com.example.foyer.entity.Etudiant;
 import com.example.foyer.repository.EtudiantRepository;
 import org.junit.jupiter.api.Test;
@@ -7,17 +6,11 @@ import org.junit.jupiter.api.Test;
 import com.example.foyer.service.etudiant.EtudiantServiceImpl;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,7 +19,7 @@ import static org.mockito.Mockito.doThrow;
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
 @SpringBootTest
-public class EtudiantServiceTest {
+public class EtudiantServiceTestJunit {
 
     @Autowired
     EtudiantRepository etudiantRepository;
