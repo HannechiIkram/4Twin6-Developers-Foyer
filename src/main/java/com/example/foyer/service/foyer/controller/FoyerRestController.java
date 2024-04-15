@@ -11,7 +11,8 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@CrossOrigin(origins = "*") // Allow requests from any origin
+    @CrossOrigin(origins = "http://192.168.1.11:4201")
+
 public class FoyerRestController {
 
     IFoyerService iFoyerService;
