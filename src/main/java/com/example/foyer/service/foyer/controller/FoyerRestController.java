@@ -13,7 +13,6 @@ import java.util.List;
 @AllArgsConstructor
     @RequestMapping("/api/foyers")
 
-    @CrossOrigin(origins = "http://192.168.1.11:4201")
 
 public class FoyerRestController {
 
