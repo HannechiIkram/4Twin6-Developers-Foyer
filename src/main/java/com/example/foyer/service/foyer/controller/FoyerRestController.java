@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-    @RequestMapping("/api/foyers")
+   /////@RequestMapping("/api/foyers")
 
 
 public class FoyerRestController {
