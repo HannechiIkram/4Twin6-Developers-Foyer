@@ -7,10 +7,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
     @Override
-public void addCorsMappings(CorsRegistry registry) {
-    registry.addMapping("/api/**")
-            .allowedOrigins("http://192.168.1.11:4201") // Autoriser uniquement les requêtes provenant de votre application Angular
-            .allowedMethods("GET", "POST", "PUT", "DELETE")
-            .allowedHeaders("*");
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/api/**")
+                .allowedOrigins("*") // Autorise les requêtes depuis n'importe quelle origine
+                .allowedMethods("GET", "POST", "PUT", "DELETE") // Autorise les méthodes GET, POST, PUT, DELETE
+                .allowedHeaders("Origin", "Accept", "Content-Type", "Authorization"); // Autorise uniquement les en-têtes nécessaires
+    }
 }
-}
+
