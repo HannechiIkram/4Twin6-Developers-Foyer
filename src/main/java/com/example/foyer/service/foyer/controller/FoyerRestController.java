@@ -11,7 +11,6 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@RequestMapping("/api/foyers")
 @CrossOrigin(origins = "*") // Allow requests from any origin
 public class FoyerRestController {
 
