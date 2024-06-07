@@ -9,6 +9,7 @@ class FoyerApplicationTests {
 
     @Test
     void contextLoads() {
+        //this test needs to be empty
     }
 
 }
