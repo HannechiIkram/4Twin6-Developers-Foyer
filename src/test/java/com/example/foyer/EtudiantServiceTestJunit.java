@@ -28,16 +28,17 @@ public class EtudiantServiceTestJunit {
 
     @Autowired
     EtudiantServiceImpl etudiantService;
+    private static final String DEFAULT_PRENOM_NOM = "samar";
     @Test
     void addEtudiant() {
     
         Etudiant etudiant = Etudiant.builder()
-                .nomEt("samar")
+                .nomEt(DEFAULT_PRENOM_NOM)
                 .cin(125646463186335L)
                 .email("hi00")
                 .ecole("hello")
                 .mdp("hi")
-                .prenomEt("samar")
+                .prenomEt(DEFAULT_PRENOM_NOM)
 
                 .build();
 
@@ -86,12 +87,12 @@ public class EtudiantServiceTestJunit {
         // Create a sample list of Etudiants
         List<Etudiant> etudiants = new ArrayList<>();
         Etudiant etudiant1 = Etudiant.builder()
-                .nomEt("samar")
+                .nomEt(DEFAULT_PRENOM_NOM)
                 .cin(125646463186335L)
                 .email("hi00")
                 .ecole("hello")
                 .mdp("hi")
-                .prenomEt("samar")
+                .prenomEt(DEFAULT_PRENOM_NOM)
                 .build();
         Etudiant etudiant2 = Etudiant.builder()
                 .nomEt("john")
