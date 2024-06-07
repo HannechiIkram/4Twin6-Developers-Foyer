@@ -52,14 +52,7 @@ public class EtudiantServiceTestJunit {
 @Test
 void addEtudiantWithInvalidData() {
     // Test adding an etudiant with invalid data (e.g., null values)
-Etudiant etudiant = Etudiant.builder()
-                .nomEt()
-                .cin()
-                .email()
-                .ecole()
-                .mdp()
-                .prenomEt()
-                .build();
+
     // Create an etudiant with invalid data
     Etudiant etudiant = Etudiant.builder().build();
 
