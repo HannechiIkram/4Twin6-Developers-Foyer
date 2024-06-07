@@ -35,13 +35,13 @@ public class EtudiantServiceTestMock {
         // Définir l'ID de l'étudiant à supprimer
         Long idToDelete = 1L;
 
-        // Simuler le cas où l'identifiant de l'étudiant n'est pas trouvé dans la base de données
-        doThrow(EmptyResultDataAccessException.class).when(etudiantRepository).deleteById(idToDelete);
+       
+       // Simuler le cas où l'identifiant de l'étudiant n'est pas trouvé dans la base de données
+doThrow(EmptyResultDataAccessException.class).when(etudiantRepository).deleteById(idToDelete);
 
-        // Appeler la méthode deleteById de votre service
-        assertThrows(EmptyResultDataAccessException.class, () -> 
-            etudiantService.deleteById(idToDelete);
-        );
+// Appeler la méthode deleteById de votre service
+assertThrows(EmptyResultDataAccessException.class, () -> etudiantService.deleteById(idToDelete));
+
 
 
     }
