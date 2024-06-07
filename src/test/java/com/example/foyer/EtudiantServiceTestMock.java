@@ -39,9 +39,9 @@ public class EtudiantServiceTestMock {
         doThrow(EmptyResultDataAccessException.class).when(etudiantRepository).deleteById(idToDelete);
 
         // Appeler la méthode deleteById de votre service
-        assertThrows(EmptyResultDataAccessException.class, () -> {
+        assertThrows(EmptyResultDataAccessException.class, () -> 
             etudiantService.deleteById(idToDelete);
-        });
+        );
 
 
     }
