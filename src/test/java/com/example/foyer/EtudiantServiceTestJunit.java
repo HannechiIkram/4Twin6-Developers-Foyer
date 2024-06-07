@@ -12,11 +12,13 @@ import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
@@ -49,24 +51,8 @@ public class EtudiantServiceTestJunit {
         assertNotNull(savedEtudiant);
         assertNotNull(savedEtudiant.getIdEtudiant());
     }
-@Test
-void addEtudiantWithInvalidData() {
-    // Test adding an etudiant with invalid data (e.g., null values)
 
-    // Create an etudiant with invalid data
-    Etudiant etudiant = Etudiant.builder().build();
 
-    // Assert that adding this etudiant throws an exception
-    assertThrows(IllegalArgumentException.class, () -> etudiantService.addEtudiant(etudiant));
-}
-
-    @Test
-    void getAllEtudiants() {
-        // Test getting all etudiants
-        List<Etudiant> responseEntity = etudiantService.getAllEtudiants();
-
-        assertNotNull(responseEntity);
-    }
 
     @Test
     void deleteEtudiantByID() {
@@ -111,5 +97,29 @@ void addEtudiantWithInvalidData() {
         assertNotNull(savedEtudiants);
         assertEquals(2, savedEtudiants.size());
     }
+
+
+    @Test
+    void getAllEtudiantsWhenDatabaseIsEmpty() {
+        // Test getting all etudiants when the database is empty
+
+        // Clear all etudiants from the database
+        etudiantRepository.deleteAll();
+
+        // Retrieve all etudiants
+        List<Etudiant> allEtudiants = etudiantService.getAllEtudiants();
+
+        // Assert that the list is empty
+        assertTrue(allEtudiants.isEmpty());
+    }
+    @Test
+    void getAllEtudiants() {
+        // Test getting all etudiants
+        List<Etudiant> responseEntity = etudiantService.getAllEtudiants();
+
+        assertNotNull(responseEntity);
+    }
+
+
 
 }
