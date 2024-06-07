@@ -23,15 +23,18 @@ import static org.mockito.Mockito.doThrow;
 @SpringBootTest
 public class EtudiantServiceTestJunit {
 
+    
     @Autowired
     EtudiantRepository etudiantRepository;
 
     @Autowired
     EtudiantServiceImpl etudiantService;
+
     private static final String DEFAULT_PRENOM_NOM = "samar";
+
     @Test
     void addEtudiant() {
-    
+        // Test adding a single etudiant
         Etudiant etudiant = Etudiant.builder()
                 .nomEt(DEFAULT_PRENOM_NOM)
                 .cin(125646463186335L)
@@ -39,52 +42,40 @@ public class EtudiantServiceTestJunit {
                 .ecole("hello")
                 .mdp("hi")
                 .prenomEt(DEFAULT_PRENOM_NOM)
-
                 .build();
 
-      
         Etudiant savedEtudiant = etudiantService.addEtudiant(etudiant);
 
-      
         assertNotNull(savedEtudiant);
         assertNotNull(savedEtudiant.getIdEtudiant());
     }
+
     @Test
-    void getAllEtudiants
-            () {
-        // Call the controller method to get all etudiants
-        List <Etudiant> responseEntity = etudiantService.getAllEtudiants();
+    void getAllEtudiants() {
+        // Test getting all etudiants
+        List<Etudiant> responseEntity = etudiantService.getAllEtudiants();
 
-        // Now, you can add assertions to ensure the response is as expected
         assertNotNull(responseEntity);
-
     }
-
-
-
 
     @Test
     void deleteEtudiantByID() {
-
-        Etudiant etudiantToDelete = new Etudiant(); // Create an etudiant entity
-        etudiantToDelete.setIdEtudiant(1L); // Set the ID of the etudiant to delete
-
-
-        etudiantRepository.save(etudiantToDelete); // Save the etudiant to the database
-
+        // Test deleting an etudiant by ID
+        Etudiant etudiantToDelete = new Etudiant();
+        etudiantToDelete.setIdEtudiant(1L);
+        etudiantRepository.save(etudiantToDelete);
 
         assertThrows(EmptyResultDataAccessException.class, () ->
-            etudiantService.deleteById(2L)
+                etudiantService.deleteById(2L)
         );
 
-        // Optional: Assert that the etudiant is not deleted from the database
         boolean isEtudiantExists = etudiantRepository.existsById(1L);
         assertTrue(isEtudiantExists);
     }
 
     @Test
     void addEtudiants() {
-        // Create a sample list of Etudiants
+        // Test adding multiple etudiants
         List<Etudiant> etudiants = new ArrayList<>();
         Etudiant etudiant1 = Etudiant.builder()
                 .nomEt(DEFAULT_PRENOM_NOM)
@@ -105,13 +96,10 @@ public class EtudiantServiceTestJunit {
         etudiants.add(etudiant1);
         etudiants.add(etudiant2);
 
-        // Call the controller method
         List<Etudiant> savedEtudiants = etudiantService.addAllEtudiant(etudiants);
 
-        // Assertions
         assertNotNull(savedEtudiants);
-        assertEquals(2, savedEtudiants.size()); // Check if all etudiants are saved
-        // Add additional assertions as needed
+        assertEquals(2, savedEtudiants.size());
     }
 
 }
