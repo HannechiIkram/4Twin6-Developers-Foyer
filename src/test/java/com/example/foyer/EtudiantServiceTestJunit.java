@@ -1,6 +1,7 @@
 package com.example.foyer;
 import com.example.foyer.entity.Etudiant;
 import com.example.foyer.repository.EtudiantRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 
 import com.example.foyer.service.etudiant.EtudiantServiceImpl;
@@ -119,7 +120,125 @@ public class EtudiantServiceTestJunit {
 
         assertNotNull(responseEntity);
     }
+    @Test
+    void findByIdExistingId() {
+        // Prepare an etudiant and save it to the database
+        Etudiant etudiant = Etudiant.builder()
+                .nomEt("Alice")
+                .prenomEt("Smith")
+                .cin(1111111111111L)
+                .ecole("University of Example")
+                .email("alice@example.com")
+                .mdp("password123")
+                .build();
+        Etudiant savedEtudiant = etudiantService.addEtudiant(etudiant);
 
+        // Find the etudiant by its ID
+        Etudiant foundEtudiant = etudiantService.findById(savedEtudiant.getIdEtudiant());
 
+        // Assert that the found etudiant is not null
+        assertNotNull(foundEtudiant);
+        // Assert that the found etudiant has the same ID as the saved etudiant
+        assertEquals(savedEtudiant.getIdEtudiant(), foundEtudiant.getIdEtudiant());
+    }
+
+    @Test
+    void findByIdNonExistingId() {
+        // Attempt to find an etudiant with a non-existing ID
+        Long nonExistingId = Long.MAX_VALUE; // Assuming Long.MAX_VALUE is not used as an ID
+        // Try to find an etudiant with a non-existing ID and expect an exception
+        assertThrows(EntityNotFoundException.class, () -> etudiantService.findById(nonExistingId));
+    }
+    @Test
+    void editExistingEtudiant() throws ChangeSetPersister.NotFoundException {
+        // Prepare an etudiant and save it to the database
+        Etudiant etudiant = Etudiant.builder()
+                .nomEt("Alice")
+                .prenomEt("Smith")
+                .cin(1111111111111L)
+                .ecole("University of Example")
+                .email("alice@example.com")
+                .mdp("password123")
+                .build();
+        Etudiant savedEtudiant = etudiantService.addEtudiant(etudiant);
+
+        // Modify some attributes of the etudiant
+        savedEtudiant.setNomEt("Updated Name");
+        savedEtudiant.setEmail("updated_email@example.com");
+
+        // Update the etudiant using the service
+        Etudiant updatedEtudiant = etudiantService.editEtudiant(savedEtudiant.getIdEtudiant(), savedEtudiant);
+
+        // Retrieve the updated etudiant from the database
+        Etudiant retrievedEtudiant = etudiantService.findById(savedEtudiant.getIdEtudiant());
+
+        // Assert that the retrieved etudiant matches the updated attributes
+        assertNotNull(updatedEtudiant);
+        assertEquals(savedEtudiant.getIdEtudiant(), updatedEtudiant.getIdEtudiant());
+        assertEquals(savedEtudiant.getNomEt(), updatedEtudiant.getNomEt());
+        assertEquals(savedEtudiant.getEmail(), updatedEtudiant.getEmail());
+
+        // Assert that the etudiant in the database is also updated
+        assertNotNull(retrievedEtudiant);
+        assertEquals(savedEtudiant.getIdEtudiant(), retrievedEtudiant.getIdEtudiant());
+        assertEquals(savedEtudiant.getNomEt(), retrievedEtudiant.getNomEt());
+        assertEquals(savedEtudiant.getEmail(), retrievedEtudiant.getEmail());
+    }
+    @Test
+    void findEtudiantByCinExistingCin() {
+        // Prepare an etudiant and save it to the database
+        Etudiant etudiant = Etudiant.builder()
+                .nomEt("Alice")
+                .prenomEt("Smith")
+                .cin(1111111111111L)
+                .ecole("University of Example")
+                .email("alice@example.com")
+                .mdp("password123")
+                .build();
+        Etudiant savedEtudiant = etudiantService.addEtudiant(etudiant);
+
+        // Find the etudiant by its CIN
+        Etudiant foundEtudiant = etudiantService.findEtudiantByCin(savedEtudiant.getCin());
+
+        // Assert that the found etudiant is not null
+        assertNotNull(foundEtudiant);
+        // Assert that the found etudiant has the same CIN as the saved etudiant
+        assertEquals(savedEtudiant.getCin(), foundEtudiant.getCin());
+    }
+    @Test
+    void findEtudiantByCinNonExistingCin() {
+        // Attempt to find an etudiant with a non-existing CIN
+        long nonExistingCin = Long.MAX_VALUE; // Assuming Long.MAX_VALUE is not used as a CIN
+        // Try to find an etudiant with a non-existing CIN and expect an exception
+        assertThrows(EntityNotFoundException.class, () -> etudiantService.findEtudiantByCin(nonExistingCin));
+    }
+    @Test
+    void findEtudiantByEmailExistingEmail() {
+        // Prepare an etudiant and save it to the database
+        Etudiant etudiant = Etudiant.builder()
+                .nomEt("Alice")
+                .prenomEt("Smith")
+                .cin(1111111111111L)
+                .ecole("University of Example")
+                .email("alice@example.com")
+                .mdp("password123")
+                .build();
+        Etudiant savedEtudiant = etudiantService.addEtudiant(etudiant);
+
+        // Find the etudiant by its email
+        Etudiant foundEtudiant = etudiantService.findEtudiantByEmail(savedEtudiant.getEmail());
+
+        // Assert that the found etudiant is not null
+        assertNotNull(foundEtudiant);
+        // Assert that the found etudiant has the same email as the saved etudiant
+        assertEquals(savedEtudiant.getEmail(), foundEtudiant.getEmail());
+    }
+    @Test
+    void findEtudiantByEmailNonExistingEmail() {
+        // Attempt to find an etudiant with a non-existing email
+        String nonExistingEmail = "nonexisting@example.com";
+        // Try to find an etudiant with a non-existing email and expect an exception
+        assertThrows(EntityNotFoundException.class, () -> etudiantService.findEtudiantByEmail(nonExistingEmail));
+    }
 
 }
