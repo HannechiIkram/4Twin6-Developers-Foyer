@@ -5,6 +5,7 @@ import com.example.foyer.entity.Etudiant;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public interface IEtudiantService {
     List<Etudiant> findEtudiantsByEcole(String ecole);
 
     // Method to find all etudiants born on a specific date
-    List<Etudiant> findEtudiantsByDateOfBirth(Date dateOfBirth);
+    List<Etudiant> findEtudiantsByDateOfBirth(LocalDate dateOfBirth);
 
     // Method to count the total number of etudiants
     long countEtudiants();

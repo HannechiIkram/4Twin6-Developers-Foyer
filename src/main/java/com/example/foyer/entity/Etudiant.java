@@ -34,7 +34,7 @@ public class Etudiant implements Serializable {
     private String ecole ;
 
     @Temporal(TemporalType.DATE)
-    private LocalDate dateNaissance ;
+    public LocalDate dateNaissance ;
 
     private String email;
     private String mdp;

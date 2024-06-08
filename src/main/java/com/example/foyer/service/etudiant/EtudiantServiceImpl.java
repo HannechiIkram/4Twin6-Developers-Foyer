@@ -13,6 +13,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -116,27 +117,27 @@ public class EtudiantServiceImpl implements IEtudiantService
             throw new ChangeSetPersister.NotFoundException();
         }
     }
-
+///////////////////
     @Override
     public List<Etudiant> findEtudiantsByEcole(String ecole) {
-        return null;
+        return e.findByEcole(ecole);
     }
 
     @Override
-    public List<Etudiant> findEtudiantsByDateOfBirth(Date dateOfBirth) {
-        return null;
+    public List<Etudiant> findEtudiantsByDateOfBirth(LocalDate dateOfBirth) {
+        return e.findEtudiantsBydateNaissance(dateOfBirth);
     }
 
     @Override
     public long countEtudiants() {
-        return 0;
+        return e.count();
     }
 
     @Override
     public boolean existsByEmail(String email) {
-        return false;
+        return e.existsByEmail(email);
     }
-    // Method to update the email of an existing etudiant
+
 
 
 }

@@ -15,6 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +27,7 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 public class EtudiantServiceTestJunit {
 
-    
+
     @Autowired
     EtudiantRepository etudiantRepository;
 
@@ -44,7 +45,7 @@ public class EtudiantServiceTestJunit {
                 .nomEt(DEFAULT_PRENOM_NOM)
                 .cin(125646463186335L)
                 .email("hi00")
-                .ecole("hello")
+                .ecole("hoo")
                 .mdp("hi")
                 .prenomEt(DEFAULT_PRENOM_NOM)
                 .build();
@@ -67,7 +68,7 @@ public class EtudiantServiceTestJunit {
                 .nomEt(DEFAULT_PRENOM_NOM)
                 .cin(125646463186335L)
                 .email("hi00")
-                .ecole("hello")
+                .ecole("helo")
                 .mdp("hi")
                 .prenomEt(DEFAULT_PRENOM_NOM)
                 .build();
@@ -147,7 +148,7 @@ public class EtudiantServiceTestJunit {
                 .cin(1111111111111L)
                 .ecole("esp")
                 .email("roberts@gmail.com")
-                .mdp("hello")
+                .mdp("helllo")
                 .build();
         Etudiant savedEtudiant = etudiantService.addEtudiant(etudiant);
 
@@ -209,5 +210,59 @@ public class EtudiantServiceTestJunit {
         // Try to find an etudiant with a non-existing email and expect an exception
         assertThrows(EntityNotFoundException.class, () -> etudiantService.findEtudiantByEmail(nonExistingEmail));
     }
+    @Test
+    void findEtudiantsByEcole() {
+        // Prepare etudiants with the same ecole and save them to the database
+        String ecole = "Example Ecole";
+        Etudiant etudiant1 = Etudiant.builder().nomEt("John").prenomEt("Doe").ecole(ecole).build();
+        Etudiant etudiant2 = Etudiant.builder().nomEt("Jane").prenomEt("Doe").ecole(ecole).build();
+        etudiantRepository.save(etudiant1);
+        etudiantRepository.save(etudiant2);
 
+        // Retrieve etudiants by ecole using the service method
+        List<Etudiant> etudiants = etudiantService.findEtudiantsByEcole(ecole);
+
+        // Assert that the retrieved etudiants match the expected count
+        assertEquals(2, etudiants.size());
+    }
+
+    @Test
+    void findEtudiantsByDateOfBirth() {
+        // Prepare an etudiant with a specific date of birth and save it to the database
+        LocalDate dateOfBirth = LocalDate.of(2000, 1, 1);
+        Etudiant etudiant = Etudiant.builder().nomEt("John").prenomEt("Doe").dateNaissance(dateOfBirth).build();
+        etudiantRepository.save(etudiant);
+
+        // Retrieve etudiants by date of birth using the service method
+        List<Etudiant> etudiants = etudiantService.findEtudiantsByDateOfBirth(dateOfBirth);
+
+        // Assert that the retrieved etudiants match the expected count
+        assertEquals(1, etudiants.size());
+    }
+    @Test
+    void countEtudiants() {
+        // Save multiple etudiants to the database
+        etudiantRepository.save(new Etudiant());
+        etudiantRepository.save(new Etudiant());
+        etudiantRepository.save(new Etudiant());
+
+        // Retrieve the count of etudiants using the service method
+        long count = etudiantService.countEtudiants();
+
+        // Assert that the count matches the expected count
+        assertEquals(3, count);
+    }
+    @Test
+    void existsByEmail() {
+        // Prepare an etudiant with a specific email and save it to the database
+        String email = "john.doe@example.com";
+        Etudiant etudiant = Etudiant.builder().nomEt("John").prenomEt("Doe").email(email).build();
+        etudiantRepository.save(etudiant);
+
+        // Check if an etudiant exists by email using the service method
+        boolean exists = etudiantService.existsByEmail(email);
+
+        // Assert that the etudiant exists
+        assertTrue(exists);
+    }
 }
