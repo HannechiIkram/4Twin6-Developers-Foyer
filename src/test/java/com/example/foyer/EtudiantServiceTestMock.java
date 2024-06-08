@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.crossstore.ChangeSetPersister;
 
 import java.util.Optional;
 
@@ -46,6 +47,26 @@ assertThrows(EmptyResultDataAccessException.class, () -> etudiantService.deleteB
 
 
 
+    }
+    @Test
+    public void testUpdateEtudiantEmail() throws ChangeSetPersister.NotFoundException {
+        // Given
+        Long etudiantId = 1L;
+        String newEmail = "newemail@example.com";
+        Etudiant existingEtudiant = new Etudiant();
+
+        existingEtudiant.setEmail("oldemail@example.com");
+
+        when(etudiantRepository.findById(etudiantId)).thenReturn(Optional.of(existingEtudiant));
+        when(etudiantRepository.save(any())).thenAnswer(invocation -> invocation.getArgument(0));
+
+        // When
+        Etudiant updatedEtudiant = etudiantService.updateEtudiantEmail(etudiantId, newEmail);
+
+        // Then
+        assertEquals(newEmail, updatedEtudiant.getEmail());
+        verify(etudiantRepository, times(1)).findById(etudiantId);
+        verify(etudiantRepository, times(1)).save(any());
     }
 
 }
