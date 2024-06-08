@@ -1,4 +1,4 @@
-package com.example.foyer.Controller;
+package com.example.foyer.controller;
 import com.example.foyer.entity.Etudiant;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;

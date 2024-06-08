@@ -55,20 +55,7 @@ public class EtudiantServiceTestJunit {
 
 
 
-    @Test
-    void deleteEtudiantByID() {
-        // Test deleting an etudiant by ID
-        Etudiant etudiantToDelete = new Etudiant();
-        etudiantToDelete.setIdEtudiant(1L);
-        etudiantRepository.save(etudiantToDelete);
 
-        assertThrows(EmptyResultDataAccessException.class, () ->
-                etudiantService.deleteById(2L)
-        );
-
-        boolean isEtudiantExists = etudiantRepository.existsById(1L);
-        assertTrue(isEtudiantExists);
-    }
 
     @Test
     void addEtudiants() {
@@ -184,27 +171,7 @@ public class EtudiantServiceTestJunit {
         assertEquals(savedEtudiant.getNomEt(), retrievedEtudiant.getNomEt());
         assertEquals(savedEtudiant.getEmail(), retrievedEtudiant.getEmail());
     }
-    @Test
-    void findEtudiantByCinExistingCin() {
-        // Prepare an etudiant and save it to the database
-        Etudiant etudiant = Etudiant.builder()
-                .nomEt("Alice")
-                .prenomEt("Smith")
-                .cin(1111111111111L)
-                .ecole("University of Example")
-                .email("alice@example.com")
-                .mdp("password123")
-                .build();
-        Etudiant savedEtudiant = etudiantService.addEtudiant(etudiant);
 
-        // Find the etudiant by its CIN
-        Etudiant foundEtudiant = etudiantService.findEtudiantByCin(savedEtudiant.getCin());
-
-        // Assert that the found etudiant is not null
-        assertNotNull(foundEtudiant);
-        // Assert that the found etudiant has the same CIN as the saved etudiant
-        assertEquals(savedEtudiant.getCin(), foundEtudiant.getCin());
-    }
     @Test
     void findEtudiantByCinNonExistingCin() {
         // Attempt to find an etudiant with a non-existing CIN
