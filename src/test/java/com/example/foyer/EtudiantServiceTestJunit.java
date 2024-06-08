@@ -183,6 +183,20 @@ public class EtudiantServiceTestJunit {
         assertThrows(EntityNotFoundException.class, () -> etudiantService.findEtudiantByCin(nonExistingCin));
     }
     @Test
+    void findEtudiantByCinExistingCin() {
+        // Prepare an etudiant with a specific CIN and save it to the database
+        Long existingCin = 1234567890123L;
+        Etudiant etudiant = Etudiant.builder().cin(existingCin).build();
+        Etudiant savedEtudiant = etudiantService.addEtudiant(etudiant);
+        // Retrieve the etudiant by its CIN using the service method
+        Etudiant foundEtudiant = etudiantService.findEtudiantByCin(existingCin);
+
+        // Assert that the retrieved etudiant is not null
+        assertNotNull(foundEtudiant);
+        // Assert that the retrieved etudiant has the same CIN as the saved etudiant
+        assertEquals(existingCin, foundEtudiant.getCin());
+    }
+    @Test
     void findEtudiantByEmailExistingEmail() {
         // Prepare an etudiant and save it to the database
         Etudiant etudiant = Etudiant.builder()
@@ -297,5 +311,58 @@ public class EtudiantServiceTestJunit {
 
         // Assert that the count is zero
         assertEquals(0, count);
+    }
+    @Test
+    void editNonExistingEtudiant() {
+        // Prepare an etudiant with attributes for editing
+        Etudiant etudiant = Etudiant.builder()
+                .nomEt("John")
+                .prenomEt("Doe")
+                .cin(1234567890123L)
+                .ecole("Example Ecole")
+                .email("john.doe@example.com")
+                .mdp("password")
+                .build();
+
+        // Attempt to edit an etudiant with a non-existing ID and expect a NotFoundException
+        assertThrows(ChangeSetPersister.NotFoundException.class, () -> etudiantService.editEtudiant(Long.MAX_VALUE, etudiant));
+    }
+    @Test
+    void updateExistingEtudiantEmail() throws ChangeSetPersister.NotFoundException {
+        // Prepare an etudiant and save it to the database
+        Etudiant etudiant = Etudiant.builder()
+                .nomEt("John")
+                .prenomEt("Doe")
+                .cin(1234567890123L)
+                .ecole("Example Ecole")
+                .email("john.doe@example.com")
+                .mdp("password")
+                .build();
+        Etudiant savedEtudiant = etudiantService.addEtudiant(etudiant);
+
+        // New email for updating
+        String newEmail = "updated_email@example.com";
+
+        // Update the etudiant email using the service
+        Etudiant updatedEtudiant = etudiantService.updateEtudiantEmail(savedEtudiant.getIdEtudiant(), newEmail);
+
+        // Retrieve the updated etudiant from the database
+        Etudiant retrievedEtudiant = etudiantService.findById(savedEtudiant.getIdEtudiant());
+
+        // Assert that the retrieved etudiant has the updated email
+        assertNotNull(updatedEtudiant);
+        assertEquals(newEmail, updatedEtudiant.getEmail());
+
+        // Assert that the etudiant in the database has the updated email
+        assertNotNull(retrievedEtudiant);
+        assertEquals(newEmail, retrievedEtudiant.getEmail());
+    }
+    @Test
+    void updateNonExistingEtudiantEmail() {
+        // New email for updating
+        String newEmail = "updated_email@example.com";
+
+        // Attempt to update the email of a non-existing etudiant and expect a NotFoundException
+        assertThrows(ChangeSetPersister.NotFoundException.class, () -> etudiantService.updateEtudiantEmail(Long.MAX_VALUE, newEmail));
     }
 }
