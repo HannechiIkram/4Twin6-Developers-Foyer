@@ -34,8 +34,7 @@ public class EtudiantServiceTestJunit {
     EtudiantServiceImpl etudiantService;
 
     private static final String DEFAULT_PRENOM_NOM = "samar";
-    private static final String DEFAULT_ALICE = "Alice";
-    private static final String DEFAULT_SMITH = "Smith";
+
 
 
     @Test
@@ -114,12 +113,12 @@ public class EtudiantServiceTestJunit {
     void findByIdExistingId() {
         // Prepare an etudiant and save it to the database
         Etudiant etudiant = Etudiant.builder()
-                .nomEt("DEFAULT_ALICE")
+                .nomEt("alice")
                 .prenomEt("Smith")
                 .cin(1111111111111L)
-                .ecole("DEFAULT_SMITH")
-                .email("DEFAULT_SMITH")
-                .mdp("DEFAULT_SMITH")
+                .ecole("esprit")
+                .email("alice@gmail.com")
+                .mdp("hi")
                 .build();
         Etudiant savedEtudiant = etudiantService.addEtudiant(etudiant);
 
@@ -143,12 +142,12 @@ public class EtudiantServiceTestJunit {
     void editExistingEtudiant() throws ChangeSetPersister.NotFoundException {
         // Prepare an etudiant and save it to the database
         Etudiant etudiant = Etudiant.builder()
-                .nomEt("DEFAULT_ALICE")
-                .prenomEt("DEFAULT_SMITH")
+                .nomEt("robert")
+                .prenomEt("evans")
                 .cin(1111111111111L)
-                .ecole("DEFAULT_SMITH")
-                .email("DEFAULT_SMITH")
-                .mdp("DEFAULT_SMITH")
+                .ecole("esp")
+                .email("roberts@gmail.com")
+                .mdp("hello")
                 .build();
         Etudiant savedEtudiant = etudiantService.addEtudiant(etudiant);
 
@@ -186,12 +185,12 @@ public class EtudiantServiceTestJunit {
     void findEtudiantByEmailExistingEmail() {
         // Prepare an etudiant and save it to the database
         Etudiant etudiant = Etudiant.builder()
-                .nomEt("DEFAULT_ALICE")
-                .prenomEt("DEFAULT_SMITH")
+                .nomEt("ella")
+                .prenomEt("chris")
                 .cin(1111111111111L)
-                .ecole("DEFAULT_SMITH")
-                .email("DEFAULT_SMITH")
-                .mdp("DEFAULT_SMITH")
+                .ecole("supcom")
+                .email("ella@gmail.com")
+                .mdp("flowers")
                 .build();
         Etudiant savedEtudiant = etudiantService.addEtudiant(etudiant);
 
