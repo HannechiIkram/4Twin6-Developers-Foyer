@@ -241,6 +241,7 @@ public class EtudiantServiceTestJunit {
     }
     @Test
     void countEtudiants() {
+        etudiantRepository.deleteAll();
         // Save multiple etudiants to the database
         etudiantRepository.save(new Etudiant());
         etudiantRepository.save(new Etudiant());
@@ -250,7 +251,7 @@ public class EtudiantServiceTestJunit {
         long count = etudiantService.countEtudiants();
 
         // Assert that the count matches the expected count
-        assertEquals(3, count);
+        assertEquals(3,count);
     }
     @Test
     void existsByEmail() {
@@ -264,5 +265,37 @@ public class EtudiantServiceTestJunit {
 
         // Assert that the etudiant exists
         assertTrue(exists);
+    }
+
+    @Test
+    void deleteById() {
+        // Prepare an etudiant and save it to the database
+        Etudiant etudiant = Etudiant.builder().nomEt("John").prenomEt("Doe").build();
+        etudiant = etudiantRepository.save(etudiant);
+
+        // Delete the etudiant by ID using the service method
+        etudiantService.deleteById(etudiant.getIdEtudiant());
+
+        // Attempt to retrieve the deleted etudiant from the database
+        Optional<Etudiant> deletedEtudiant = etudiantRepository.findById(etudiant.getIdEtudiant());
+
+        // Assert that the etudiant is deleted
+        assertFalse(deletedEtudiant.isPresent());
+    }
+    @Test
+    void deleteAll() {
+        // Save multiple etudiants to the database
+        etudiantRepository.save(new Etudiant());
+        etudiantRepository.save(new Etudiant());
+        etudiantRepository.save(new Etudiant());
+
+        // Delete all etudiants using the service method
+        etudiantService.deleteAll();
+
+        // Retrieve the count of etudiants after deletion
+        long count = etudiantRepository.count();
+
+        // Assert that the count is zero
+        assertEquals(0, count);
     }
 }
