@@ -13,6 +13,8 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -45,4 +47,59 @@ assertThrows(EmptyResultDataAccessException.class, () -> etudiantService.deleteB
 
 
     }
+
+    @Test
+    public void addEtudiant() {
+        // Créer un étudiant de test
+        Etudiant etudiant = new Etudiant();
+        etudiant.setNomEt("John");
+        etudiant.setPrenomEt("Doe");
+        etudiant.setEmail("john.doe@example.com");
+        etudiant.setCin(1234567890L);
+
+        // Simuler le comportement du repository pour sauvegarder l'étudiant
+        when(etudiantRepository.save(any(Etudiant.class))).thenReturn(etudiant);
+
+        // Appeler la méthode addEtudiant de votre service
+        Etudiant savedEtudiant = etudiantService.addEtudiant(etudiant);
+
+        // Vérifier si l'étudiant retourné correspond à celui qui a été sauvegardé
+        assertEquals("John", savedEtudiant.getNomEt());
+        assertEquals("Doe", savedEtudiant.getPrenomEt());
+        assertEquals("john.doe@example.com", savedEtudiant.getEmail());
+        assertEquals(1234567890L, savedEtudiant.getCin());
+    }
+
+    @Test
+    public void findById() {
+        // Créer un étudiant de test
+        Etudiant etudiant = new Etudiant();
+
+        etudiant.setNomEt("Jane");
+        etudiant.setPrenomEt("Doe");
+        etudiant.setEmail("jane.doe@example.com");
+        etudiant.setCin(9876543210L);
+
+        // Simuler le comportement du repository pour retourner l'étudiant par ID
+        when(etudiantRepository.findById(1L)).thenReturn(Optional.of(etudiant));
+
+        // Appeler la méthode findById de votre service
+        Etudiant foundEtudiant = etudiantService.findById(1L);
+
+        // Vérifier si l'étudiant retourné correspond à celui qui a été simulé
+        assertEquals("Jane", foundEtudiant.getNomEt());
+        assertEquals("Doe", foundEtudiant.getPrenomEt());
+        assertEquals("jane.doe@example.com", foundEtudiant.getEmail());
+        assertEquals(9876543210L, foundEtudiant.getCin());
+    }
+
+    @Test
+    public void deleteAll() {
+        // Appeler la méthode deleteAll de votre service
+        etudiantService.deleteAll();
+
+        // Vérifier si la méthode deleteAll du repository a été appelée une fois
+        verify(etudiantRepository, times(1)).deleteAll();
+    }
+
 }

@@ -3,6 +3,7 @@ package com.example.foyer.service;
 
 import com.example.foyer.entity.Etudiant;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import com.example.foyer.service.IEtudiantService;
 import java.time.LocalDate;
@@ -17,7 +18,7 @@ import java.util.List;
 public class EtudiantRestController {
     @Autowired
     @JsonIgnore
-    IEtudiantService service;
+    public IEtudiantService service;
 
     @PostMapping("/addEtudiant")
     public Etudiant addEtudiant(@RequestBody Etudiant e) {return service.addEtudiant(e);}
@@ -28,13 +29,14 @@ public class EtudiantRestController {
     }
 
     @DeleteMapping("/deletebyid/{id}")
-    void deleteEtudiantByID(@PathVariable("id") Long id){
+    public void deleteEtudiantByID(@PathVariable("id") Long id){
         service.deleteById(id);
     }
-    @DeleteMapping("/deleteall") String deleteAll(){service.deleteAll();return "all students are deleted";
+    @DeleteMapping("/deleteall")
+    public String deleteAll(){service.deleteAll();return "all students are deleted";
     }
     @PutMapping("updateEtudiant/{id}")
-    Etudiant updateEtudiant(@PathVariable("id") Long id ,@RequestBody Etudiant e) throws ChangeSetPersister.NotFoundException {
+    public Etudiant updateEtudiant(@PathVariable("id") Long id, @RequestBody Etudiant e) throws ChangeSetPersister.NotFoundException {
         return  service.editEtudiant(id,e);
     }
 
@@ -44,7 +46,8 @@ public class EtudiantRestController {
         List<Etudiant> liste=service.getAllEtudiants();
         return new ResponseEntity<>(liste, HttpStatus.OK);
     }
-    @GetMapping("/getby/{id}") Etudiant findById(@PathVariable("id") Long id){ return service.findById(id);}
+    @GetMapping("/getby/{id}")
+    public Etudiant findById(@PathVariable("id") Long id){ return service.findById(id);}
 
 
 
